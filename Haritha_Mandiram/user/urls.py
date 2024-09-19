@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import schem
+from .views import schems
 
 app_name='user'
 
 urlpatterns = [
-    path('schems/',schem.index,name='index'),
-    path('schems/<int:id>/',schem.details,name='details'),
-    path('schems/<int:id>/apply/',schem.schem_apply,name='schem_apply'),
+    path('schems/',schems.index,name='index'),
+    path('schems/<int:id>/',schems.details,name='details'),
+    # path('schems/apply/',schems.schem_apply,name='schem_apply'),
 ]

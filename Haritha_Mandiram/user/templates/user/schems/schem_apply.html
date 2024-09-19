@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/user/schems/{{form.instance.id}}/apply/" method="post">
+<form action="/user/schems/apply/" method="post">
 {% csrf_token %}
 {{form.as_p}}
 <input type="submit" value="Submit">

@@ -7,8 +7,8 @@
     Start_date : {{schem.start_date}} <br>
     End_date : {{schem.end_date}} <br> <br>
     
-   <a href="{% url 'officer:index' %}">Back</a> <br>
-   <a href="{% url 'officer:delete' schem.id %}">Delete</a>
-   <a href="{% url 'officer:update' schem.id %}">Edit</a>
+   <a href="{% url 'officer:schems' %}">Back</a> <br>
+   <a href="{% url 'officer:delete_schem' schem.id %}">Delete</a>
+   <a href="{% url 'officer:update_schem' schem.id %}">Edit</a>
 
 {% endblock content %}

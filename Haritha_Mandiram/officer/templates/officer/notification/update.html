@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="/officer/notification/{{form.instance.id}}/update/" method="post">
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" value="Submit">
+</form>
+
+{% endblock content %}
+
