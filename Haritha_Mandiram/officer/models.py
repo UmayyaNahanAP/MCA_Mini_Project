@@ -21,6 +21,20 @@ benefinting=[
     ('No','No')
     ]
 
+
+
+class HM_User(models.Model):
+    name=models.CharField(max_length=225)
+    dob=models.DateField()
+    genter= models.CharField(max_length=20, choices=gender)
+    phone_number = models.CharField(max_length=10,unique=True)
+    email=models.EmailField(max_length=225,unique=True)
+    password=models.CharField(max_length=8)
+    conform_password=models.CharField(max_length=8)
+    def __str__(self):
+        return self.name
+
+
 class Schem(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=100)

@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    Name : {{schem.name}} <br>
+    Description : {{schem.description}} <br>
+    Criteria : {{schem.criteria}} <br>
+    Start_date : {{schem.start_date}} <br>
+    End_date : {{schem.end_date}} <br> <br>
+    
+   <a href="{% url 'hm_user:index' %}">Back</a> <br>
+
+{% endblock content %}
