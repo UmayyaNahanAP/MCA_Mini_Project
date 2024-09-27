@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm,DateInput
 from .models import Schem,Notification
 
 class CreateSchemForm(ModelForm):
