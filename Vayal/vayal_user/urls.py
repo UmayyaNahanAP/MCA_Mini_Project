@@ -1,12 +1,14 @@
 from django.urls import path
-from .views import schems,notification,home
+from .views import reg,schems,notification,home
 
 app_name='vayal_user'
 
 urlpatterns = [
 
     path('home/',home.index,name='home'),
-
+    path('sign_up/',reg.index,name='sign_up'),
+    path('login/',reg.login,name='login'),
+    
     path('schems/',schems.index,name='index'),
     path('schems/<int:id>/',schems.details,name='details'),
 

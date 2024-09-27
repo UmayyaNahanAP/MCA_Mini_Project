@@ -1,8 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 schem_type=[('Janakeeyasoothranam','Janakeeyasoothranam'),
             ('Department of agriculture','Department of agriculture')]
+
+
 
 class Schem(models.Model):
     name=models.CharField(max_length=250)
@@ -15,6 +18,8 @@ class Schem(models.Model):
     def __str__(self):
         return self.name
     
+        
+
 
 class Notification(models.Model):
     title = models.CharField(max_length=150)
