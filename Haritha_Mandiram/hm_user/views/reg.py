@@ -4,14 +4,13 @@ from hm_user.forms import HMUserRegistrationForm
 from officer.models import HM_User
 
 def index(request):
-    print("aa")
     if request.POST: 
         print("ddsxvc")
         form = HMUserRegistrationForm(request.POST)
-        
+        print(form.errors)
         if form.is_valid():
             hm_user = form.save(commit=False)
-            account = User.objects.create_user(form.name,form.cleaned_data['email'],form.cleaned_data['password'])
+            account = User.objects.create_user(hm_user.name,form.cleaned_data['email'],form.cleaned_data['password'])
             account.save()
             hm_user.account = account
             hm_user.save()

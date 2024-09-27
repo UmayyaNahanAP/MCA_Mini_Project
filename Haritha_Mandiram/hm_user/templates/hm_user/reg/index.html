@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/hm_user/reg/index/" method="post">
+<form method="post">
 {% csrf_token %}
 {{form.as_p}}
 <input type="submit" value="Submit">
