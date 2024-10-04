@@ -1,5 +1,22 @@
 {% extends 'base.html' %} 
 {% block content %}
-gghjj
+  
+<header class="text-white   body-font bg-green-600 h-30 ">
+  <div class="mx-auto max-w-20xl px-6 lg:px-8">
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div class="mt-10 flex items-center justify-center gap-x-6"> 
+          <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+              <a class="mr-10 hover:text-gray-900 text-xl">First Link</a>
+              <a class="mr-10 hover:text-gray-900 text-xl">Second Link</a>
+              <a class="mr-10 hover:text-gray-900 text-xl">Third Link</a>
+              <a href="{% url 'logout' %}" class="mr-10 hover:text-gray-900 text-xl">Logout</a>
+            </nav> 
+          </div>
+        </div>
+      </div>
+  </div>
+</header>
+
 
 {% endblock content %}

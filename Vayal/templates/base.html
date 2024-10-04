@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vayal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+    {% block header %}{% endblock header %}
+    </title>
 </head>
 <body>
     {% block content %}
+  
     {% endblock content %}
 </body>
 </html>

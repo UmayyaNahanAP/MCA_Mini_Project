@@ -6,8 +6,8 @@ app_name='vayal_user'
 urlpatterns = [
 
     path('home/',home.index,name='home'),
-    path('sign_up/',reg.index,name='sign_up'),
-    path('login/',reg.login,name='login'),
+    path('register/',reg.index,name='register'),
+    # path('login/',reg.login,name='login'),
     
     path('schems/',schems.index,name='index'),
     path('schems/<int:id>/',schems.details,name='details'),

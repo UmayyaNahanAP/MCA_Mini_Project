@@ -3,6 +3,5 @@ from django.shortcuts import render, redirect
 
 
 def index(request):
-    # vayal_user = HM_User.objects.get(account=request.user)
     return render(request, 'vayal_user/home/index.html')
 
