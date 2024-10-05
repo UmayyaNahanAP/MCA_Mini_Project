@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import reg,schems,notification,home
+from .views import reg, schemes,notification,home
 
 app_name='vayal_user'
 
@@ -9,8 +9,8 @@ urlpatterns = [
     path('register/',reg.index,name='register'),
     # path('login/',reg.login,name='login'),
     
-    path('schems/',schems.index,name='index'),
-    path('schems/<int:id>/',schems.details,name='details'),
+    path('schemes/',schemes.index,name='scheme'),
+    path('schemes/<int:id>/',schemes.details,name='details'),
 
     path('notification/',notification.index, name='notifications'),
 ]

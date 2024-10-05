@@ -7,7 +7,7 @@ schem_type=[('Janakeeyasoothranam','Janakeeyasoothranam'),
 
 
 
-class Schem(models.Model):
+class Scheme(models.Model):
     name=models.CharField(max_length=250)
     type=models.CharField(max_length=50,choices=schem_type)
     description=models.CharField(max_length=250)

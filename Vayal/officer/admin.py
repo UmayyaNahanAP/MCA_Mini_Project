@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Schem,Notification
+from .models import Scheme,Notification
 
 
 
-admin.site.register(Schem)
+admin.site.register(Scheme)
 admin.site.register(Notification)

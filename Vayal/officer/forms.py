@@ -1,9 +1,9 @@
 from django.forms import ModelForm,DateInput
-from .models import Schem,Notification
+from .models import Scheme,Notification
 
-class CreateSchemForm(ModelForm):
+class CreateSchemeForm(ModelForm):
     class Meta:
-        model=Schem
+        model=Scheme
         fields='__all__'
 
 

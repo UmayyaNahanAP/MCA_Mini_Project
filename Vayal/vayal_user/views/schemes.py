@@ -1,17 +1,17 @@
 from django.shortcuts import render
-from officer.models import Schem
+from officer.models import Scheme
 # from user.forms import SchemApplicationForm
 
 
 # Create your views here.
 
 def index(request):
-    schems=Schem.objects.all()
-    return render(request,'vayal_user/schems/index.html',{'schems':schems})
+    schemes=Scheme.objects.all()
+    return render(request,'vayal_user/schemes/index.html',{'schemes':schemes})
 
 def details(request,id):
-    schem=Schem.objects.get(id=id)
-    return render(request,'vayal_user/schems/details.html',{'schem':schem})
+    scheme=Scheme.objects.get(id=id)
+    return render(request,'vayal_user/schemes/details.html',{'scheme':scheme})
 
 # def schem_apply(request):
 #     if request.POST:
