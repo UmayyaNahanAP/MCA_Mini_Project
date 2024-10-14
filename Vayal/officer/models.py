@@ -1,9 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
+from vayal_user.models import Vayal_User
 
 
-schem_type=[('Janakeeyasoothranam','Janakeeyasoothranam'),
+schem_type = [('Janakeeyasoothranam','Janakeeyasoothranam'),
             ('Department of agriculture','Department of agriculture')]
+
+complaint_status = (('Pending', 'Pending'),
+                    ('In Progress', 'In Progress'),
+                    ('Resolved', 'Resolved'),
+                    ('Unresolvable', 'Unresolvable'))
 
 
 
@@ -18,7 +23,16 @@ class Scheme(models.Model):
     def __str__(self):
         return self.name
     
-        
+
+class Complaint(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=complaint_status, default='Pending')
+
+    def __str__(self):
+        return self.title
 
 
 class Notification(models.Model):
@@ -30,3 +44,5 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.title
+    
+
