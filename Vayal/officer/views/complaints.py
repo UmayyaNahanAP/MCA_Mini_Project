@@ -12,11 +12,11 @@ def index(request):
     if status:
         complaints = complaints.filter(status=status)
     context = {
-        ' vayal_user':  vayal_user,
+        'vayal_user':  vayal_user,
         'status': status,
         'complaints': complaints,
     }
-    return render(request, 'officer/complaint/index.html', context)
+    return render(request,'officer/complaint/index.html',context)
 
 
 def mark_resolved(request, id):
