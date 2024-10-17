@@ -10,6 +10,10 @@ complaint_status = (('Pending', 'Pending'),
                     ('Resolved', 'Resolved'),
                     ('Unresolvable', 'Unresolvable'))
 
+vegetable_status = [ ('Pending', 'Pending'),
+                    ('Approved', 'Approved'),
+                    ('Rejected', 'Rejected'),]
+
 
 
 class Scheme(models.Model):
@@ -22,6 +26,18 @@ class Scheme(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class VegetablePermission(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User,on_delete=models.CASCADE)
+    vegetable_names = models.JSONField()
+    farm_name=models.CharField(max_length=250)
+    farm_address=models.CharField(max_length=250)
+    applied_date=models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=vegetable_status, default='Pending')
+
+    def __str__(self):
+        return self.vayal_user.name
     
 
 class Complaint(models.Model):
