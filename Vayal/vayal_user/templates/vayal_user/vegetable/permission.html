@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% block header %}{% endblock header %}
+
+{% block content %}
+
+<h1>Apply for Vegetable Permission</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% comment %} <div>
+            <label for="id_vayal_user">Vayal User:</label>
+            {{ form.vayal_user }}
+        </div> {% endcomment %}
+
+        <div>
+            <label for="id_vegetable_names">Vegetable Names:</label>
+            {{ form.vegetable_names }}
+            <small>{{ form.vegetable_names.help_text }}</small>
+        </div>
+
+        <div>
+            <label for="id_farm_name">Farm Name:</label>
+            {{ form.farm_name }}
+        </div>
+
+        <div>
+            <label for="id_farm_address">Farm Address:</label>
+            {{ form.farm_address }}
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock content %}
+
+    

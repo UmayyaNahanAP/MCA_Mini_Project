@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% block content %}
+<ol>
+{% for schem in schems %}
+<li>
+    Name : {{schem.name}} <br>
+    Start_date : {{schem.start_date}} <br>
+    End_date : {{schem.end_date}} <br> <br>
+    <a href="{% url 'officer:details_schem' schem.id %}"> view</a>
+</li>
+<br><br><hr>
+{% endfor %}
+</ol>
+{% endblock content %}
