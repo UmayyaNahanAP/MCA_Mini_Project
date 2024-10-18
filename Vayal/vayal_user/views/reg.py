@@ -13,7 +13,7 @@ def index(request):
             vayal_user.account = account
             vayal_user.save()
             form.save()
-            return redirect('vayal_user:login')
+            return redirect('vayal_user:register')
     form = VayalUserRegistrationForm()
     return render(request,'vayal_user/reg/index.html',{'form':form})
 
