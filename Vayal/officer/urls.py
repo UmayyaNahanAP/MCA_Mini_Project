@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import schemes,notification,complaints
+from .views import home,schemes,notification,complaints
 
 app_name='officer'
 
 urlpatterns = [
+
+    path('home/',home.index,name='home'),
 
     path('schemes/',schemes.index,name='schemes'),
     path('schemes/create/',schemes.create,name='create_schemes'),

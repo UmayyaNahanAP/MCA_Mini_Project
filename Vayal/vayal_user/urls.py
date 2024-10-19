@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import schemes,reg,notification,complaint
+from .views import home,schemes,reg,notification,complaint
 
 
 app_name='vayal_user'
 
 urlpatterns = [
     path('register/',reg.index,name='register'),
+    path('home/',home.index,name='home'),
 
     path('schemes/',schemes.index,name='schemes'),
     path('schemes/<int:id>/',schemes.details,name='details_schemes'),
