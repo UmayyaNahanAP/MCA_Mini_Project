@@ -6,7 +6,8 @@ from .models import Notification
 class CreateNotificationForm(ModelForm):
     class Meta:
         model = Notification
-        fields = '__all__'
+        fields = ['title','description','date','published']
         widgets = {
             'date': DateInput()
         }
+        
