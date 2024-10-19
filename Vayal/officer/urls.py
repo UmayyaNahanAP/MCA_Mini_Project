@@ -1,15 +1,15 @@
 from django.urls import path
-from .views import notification,complaints
+from .views import schemes,notification,complaints
 
 app_name='officer'
 
 urlpatterns = [
 
-    # path('schemes/',schemes.index,name='schems'),
-    # path('schemes/create/',schemes.create,name='create_scheme'),
-    # path('schemes/<int:id>/update/',schemes.update,name='update_scheme'),
-    # path('schemes/<int:id>/',schemes.details,name='details_scheme'),
-    # path('schemes/<int:id>/delete/',schemes.delete,name='delete_scheme'),
+    path('schemes/',schemes.index,name='schemes'),
+    path('schemes/create/',schemes.create,name='create_schemes'),
+    path('schemes/<int:id>/update/',schemes.update,name='update_schemes'),
+    path('schemes/<int:id>/',schemes.details,name='details_schemes'),
+    path('schemes/<int:id>/delete/',schemes.delete,name='delete_schemes'),
 
     path('notification/',notification.index, name='notification'),
     path('notification/<int:id>/',notification.details,name='details_notification'),
