@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title>Complaints</title>
+{% endblock header %}
+
+{% block content %}
+
+
+    </div>
+    <div class="w-10/12 h-screen overflow-y-auto px-8 py-14">
+        <div class="flex justify-between mb-5">
+            <h1 class="text-2xl font-bold">Complaints</h1>
+            <div class="flex items-center gap-2">
+                <form class="flex items-center gap-2" method="get">
+                    <select name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option selected value="all" disabled selected>Filter by status</option>
+                        <option value="Pending" {% if status == 'Pending'%} selected {% endif %}>Pending</option>
+                        <option value="In Progress" {% if status == 'In Progress'%} selected {% endif %}>In Progress</option>
+                        <option value="Resolved" {% if status == 'Resolved'%} selected {% endif %}>Resolved</option>
+                        <option value="Unresolvable" {% if status == 'Unresolvable'%} selected {% endif %}>Unresolvable</option>
+                    </select>
+                    <button type="submit" class="bg-gray-50 p-2 text-gray-400 border cursor-pointer border-gray-300 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>                                                                        
+                    </button>
+                </form>
+                
+<div class="relative">
+                <svg  id="profile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-gray-400 cursor-pointer">
+                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                </svg>
+                <div id="popup" class="px-4 py-2 shadow hidden w-max text-sm -bottom-12 right-5 rounded bg-gray-50 flex flex-col">
+                    <ul>
+                        <li class="border-b-2 py-1"><span class="text-gray-400">Logged in as:</span> {{ request.vayal_user}}</li>
+                        <a href="{% url 'logout' %}">
+                            <li class="py-1 flex gap-1 items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                  </svg>                              
+                                Logout
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>                                       
+            </div>
+        </div>
+
+        {% if student or status or selected_hostel %}
+        <div class="flex gap-4 pb-4 text-sm text-gray-400">
+            <span>
+                Showing filtered complaints. 
+            </span>
+            <a href="{% url 'officer:complaints' %}" class="text-gray-300">Clear filter</a>
+        </div> 
+        {% endif %}
+        <div class="border-none rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr class="">
+                        <th scope="col" class="px-6 py-3">
+                           User
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Title
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Description
+                        </th>
+                        <th scope="col" class="px-6 py-3" colspan="2">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                        <tr class="bg-white border-b last:border-none">
+                         
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ complaint.vayal_user }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ complaint.title }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ complaint.description }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <form method="post" action="{% url 'officer:update_complaint_status' complaint.id %}">
+                                    {% csrf_token %}
+                                    <select name="status" onchange="this.form.submit()">
+                                        <option value="Pending" {% if complaint.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="In Progress" {% if complaint.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                        <option value="Resolved" {% if complaint.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+                                        <option value="Unresolvable" {% if complaint.status == 'Unresolvable' %}selected{% endif %}>Unresolvable</option>
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    const profile = document.querySelector('#profile');
+    const popup = document.querySelector('#popup');
+    profile.addEventListener("click", togglePopup);
+    document.body.addEventListener("click", function (e) {
+        if(popup.classList.contains("absolute") && e.target.id != 'profile') {
+            togglePopup();
+        }
+    })
+    function togglePopup() {
+        popup.classList.toggle("absolute");
+        popup.classList.toggle("hidden");
+    }
+</script>
+
+
+{% endblock content %}
