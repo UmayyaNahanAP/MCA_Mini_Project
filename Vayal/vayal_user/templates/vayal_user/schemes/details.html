@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    Name : {{scheme.name}} <br>
+    Description : {{scheme.description}} <br>
+    Criteria : {{scheme.criteria}} <br>
+    Start_date : {{scheme.start_date}} <br>
+    End_date : {{scheme.end_date}} <br> <br>
+    
+   <a href="{% url 'vayal_user:schemes' %}">Back</a> <br>
+
+{% endblock content %}
