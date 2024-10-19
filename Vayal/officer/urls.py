@@ -4,6 +4,13 @@ from .views import notification,complaints
 app_name='officer'
 
 urlpatterns = [
+
+    # path('schemes/',schemes.index,name='schems'),
+    # path('schemes/create/',schemes.create,name='create_scheme'),
+    # path('schemes/<int:id>/update/',schemes.update,name='update_scheme'),
+    # path('schemes/<int:id>/',schemes.details,name='details_scheme'),
+    # path('schemes/<int:id>/delete/',schemes.delete,name='delete_scheme'),
+
     path('notification/',notification.index, name='notification'),
     path('notification/<int:id>/',notification.details,name='details_notification'),
     path('notification/create/',notification.create, name='create_notification'),
