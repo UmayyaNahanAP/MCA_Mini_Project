@@ -1,8 +1,10 @@
-from django.urls import path,include
+from django.urls import path
+from .views import reg
 
 
 app_name='vayal_user'
 
 urlpatterns = [
-    path('officer/',include('officer.urls')),
+    path('register/',reg.index,name='register'),
+    # path('officer/',include('officer.urls')),
 ]
