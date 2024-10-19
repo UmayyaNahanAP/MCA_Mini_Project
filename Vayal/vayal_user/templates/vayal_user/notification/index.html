@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+<ol>
+{% for notification in notifications %}
+<li>
+    Title : {{notification.title}} <br>
+    Date : {{notification.date}} <br>
+    <a href="{% url 'vayal_user:details_notification' notification.id %}"> view</a>
+</li>
+<br><br><hr>
+{% endfor %}
+</ol>
+{% endblock content %}

@@ -1,17 +1,12 @@
 {% extends 'base.html' %} 
 {% block content %}
-<ol>
-{% for notification in notifications %}
-<li>
+
     Title : {{notification.title}} <br>
     Date : {{notification.date}} <br>
+    Discription : {{notification.description}} <br>
     Status : {% if notification.published %}Published
     {% else %}
         Draft
     {% endif %}
-    <a href="{% url 'officer:details_notification' notification.id %}"> view</a>
-</li>
-<br><br><hr>
-{% endfor %}
-</ol>
+
 {% endblock content %}

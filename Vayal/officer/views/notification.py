@@ -14,13 +14,17 @@ def index(request):
     }
     return render(request, 'officer/notification/index.html', context)
 
+def details(request,id):
+    notification=Notification.objects.get(id=id)
+    return render(request,'officer/notification/details.html',{'notification':notification})
+
 
 def create(request):
     if request.POST:
         form = CreateNotificationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('officer:notifications')
+            return redirect('officer:notification')
     form = CreateNotificationForm()
     return render(request, 'officer/notification/create.html/', {'form': form})
 
@@ -31,7 +35,7 @@ def update(request, id):
         form = CreateNotificationForm(request.POST, instance=notification)
         if form.is_valid():
             form.save()
-            return redirect('officer:notifications')
+            return redirect('officer:notification')
     form = CreateNotificationForm(instance=notification)
     return render(request, 'officer/notification/update.html', {'form': form})
 
@@ -39,5 +43,5 @@ def update(request, id):
 def delete(request, id):
     notification = Notification.objects.get(id=id)
     notification.delete()
-    return redirect('officer:notifications')
+    return redirect('officer:notification')
 
