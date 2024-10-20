@@ -1,6 +1,11 @@
 from django.forms import ModelForm
 from django.forms import EmailField, PasswordInput, CharField
 from .models import Vayal_User
+from django import forms
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class VayalUserRegistrationForm(ModelForm):
@@ -11,3 +16,4 @@ class VayalUserRegistrationForm(ModelForm):
         fields=['name','dob','gender','phone_number','aadhar_number','cast',
                'house_name','place','village','pincode','land_ownership']
             #    ,'photo']
+        widgets = {'dob': DateInput()}
