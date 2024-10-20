@@ -1,11 +1,16 @@
 from django.forms import ModelForm,DateInput
-from .models import Scheme,Notification,Complaint
+from .models import Scheme,SchemeApplication,Notification,Complaint
 
 
 
 class CreateSchemeForm(ModelForm):
     class Meta:
         model=Scheme
+        fields='__all__'
+
+class SchemeApplicationForm(ModelForm):
+    class Meta:
+        model=SchemeApplication
         fields='__all__'
 
 
