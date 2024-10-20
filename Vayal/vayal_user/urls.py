@@ -6,7 +6,7 @@ app_name='vayal_user'
 
 urlpatterns = [
     path('register/',reg.index,name='register'),
-    path('login/',reg.login,name='login'),
+    # path('login/',reg.login,name='login'),
     path('home/',home.index,name='home'),
 
     path('schemes/',schemes.index,name='schemes'),
