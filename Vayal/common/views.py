@@ -7,10 +7,8 @@ User = get_user_model()
 
 
 def login_user(request):
-    if request.POST:
-        
+    if request.POST: 
         try:
-            print("a")
             existing_user_name = User.objects.get(
                 email=request.POST['username']).get_username()
             print(existing_user_name)
