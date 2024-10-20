@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block header %}
+Scheme Application
+{% endblock header %}
+
+{% block content %}
+        <div class="bg-white rounded p-5">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form}}        
+                <div class="flex gap-3 mt-5">
+                    <input type='submit' value='Submit' class="text-white bg-blue-500 border rounded border-transparent px-4 py-1">
+                    <input type='reset' value='Clear' class="text-blue-500 border rounded border-blue-500 px-4 py-1">
+                </div>
+            </form>
+        </div>
+
+
+<script>
+    const profile = document.querySelector('#profile');
+    const popup = document.querySelector('#popup');
+    profile.addEventListener("click", togglePopup);
+    document.body.addEventListener("click", function (e) {
+        if(popup.classList.contains("absolute") && e.target.id != 'profile') {
+            togglePopup();
+        }
+    })
+    function togglePopup() {
+        popup.classList.toggle("absolute");
+        popup.classList.toggle("hidden");
+    }
+</script>
+{% endblock content %}

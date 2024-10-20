@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home,schemes,reg,notification,complaint
+from .views import reg,home,schemes,scheme_application,notification,complaint
 
 
 app_name='vayal_user'
@@ -10,6 +10,10 @@ urlpatterns = [
 
     path('schemes/',schemes.index,name='schemes'),
     path('schemes/<int:id>/',schemes.details,name='details_schemes'),
+
+    path('scheme_apply/',scheme_application.scheme_apply,name='scheme_apply'),
+    
+
 
 
     path('notification/',notification.index, name='notifications'),
