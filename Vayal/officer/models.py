@@ -35,11 +35,11 @@ class SchemeApplication(models.Model):
     bank_name=models.CharField(max_length=255)
     branch=models.CharField(max_length=255)
     account_no=models.CharField(max_length=19)
-    photo=models.ImageField(upload_to='documents/photo/')
-    sign=models.ImageField(upload_to='documents/sign/')
-    aadhar=models.ImageField(upload_to='documents/aadhar/')
-    land_tax=models.ImageField(upload_to='documents/land_tax/')
-    bank_pass=models.ImageField(upload_to='documents/bank_pass/')
+    photo=models.ImageField(upload_to='documents/photo')
+    sign=models.ImageField(upload_to='documents/sign')
+    aadhar=models.ImageField(upload_to='documents/aadhar')
+    land_tax=models.ImageField(upload_to='documents/land_tax')
+    bank_pass=models.ImageField(upload_to='documents/bank_pass')
     def __str__(self):
         return self.name
 
