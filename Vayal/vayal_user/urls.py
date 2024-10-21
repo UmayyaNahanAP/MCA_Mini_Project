@@ -16,7 +16,7 @@ urlpatterns = [
     
     path('vegetables/',vegetable.index,name='vegetables'),
     path('vegetable/permission_application/',vegetable.vegetable_apply,name='vegetable_permission_application'),
-
+    path('vegetables/add/',vegetable.add,name='vegetables_add'),
 
 
     path('notification/',notification.index, name='notifications'),
