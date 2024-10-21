@@ -1,5 +1,5 @@
 from django.forms import ModelForm,DateInput
-from .models import Scheme,SchemeApplication,Notification,Complaint
+from .models import Scheme,SchemeApplication,VegetablePermission,Notification,Complaint
 
 
 
@@ -12,6 +12,12 @@ class SchemeApplicationForm(ModelForm):
     class Meta:
         model=SchemeApplication
         fields='__all__'
+
+
+class VegetablePermissionForm(ModelForm):
+    class Meta:
+        model=VegetablePermission
+        fields = ['farm_name','farm_place']
 
 
 class CreateComplaintForm(ModelForm):

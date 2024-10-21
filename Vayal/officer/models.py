@@ -7,6 +7,11 @@ complaint_status = [('Pending', 'Pending'),
                     ('Resolved', 'Resolved'),
                     ('Unresolvable', 'Unresolvable')]
 
+vegetable_permission_status = [('Pending', 'Pending'),
+                               ('Approved', 'Approved'),
+                               ('Rejected', 'Rejected')]
+
+
 schem_type = [('Janakeeyasoothranam','Janakeeyasoothranam'),
             ('Department of agriculture','Department of agriculture')]
 
@@ -42,6 +47,17 @@ class SchemeApplication(models.Model):
     bank_pass=models.ImageField(upload_to='documents/bank_pass')
     def __str__(self):
         return self.name
+
+
+class VegetablePermission(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    farm_name = models.CharField(max_length=150)
+    farm_place = models.TextField()
+    applied_date=models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=vegetable_permission_status, default='Pending')
+
+    def __str__(self):
+        return self.title
 
 
 
