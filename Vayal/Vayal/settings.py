@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
+# STATIC_ROOT = '/static/'
 STATICFILES_DIR=[
     BASE_DIR / 'static'
 ]
@@ -134,6 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
+
+LOGIN_REDIRECT_URL = 'officer:home'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 RISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'

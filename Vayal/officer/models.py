@@ -51,11 +51,22 @@ class SchemeApplication(models.Model):
 
 class VegetablePermission(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
-    farm_name = models.CharField(max_length=150)
-    farm_place = models.TextField()
+    farm_name = models.CharField(max_length=250)
+    farm_place = models.CharField(max_length=250)
     applied_date=models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=vegetable_permission_status, default='Pending')
 
+    def __str__(self):
+        return self.title
+
+class Vegetable(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    farm_details = models.ForeignKey(VegetablePermission, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    price = models.CharField(max_length=250)
+    quantity = models.CharField(max_length=250)
+    expiry =  models.CharField(max_length=250)
+    photo = models.ImageField(upload_to='photo')
     def __str__(self):
         return self.title
 
