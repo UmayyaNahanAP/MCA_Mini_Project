@@ -24,8 +24,9 @@ class VegetablePermissionForm(ModelForm):
 class VegetableForm(ModelForm):
     class Meta:
         model=Vegetable
-        fields = ['name','price','quantity','expiry','photo']
-
+        fields ='__all__'
+        # ['name','price','quantity','expiry','photo']
+       
 
 
 class CreateComplaintForm(ModelForm):

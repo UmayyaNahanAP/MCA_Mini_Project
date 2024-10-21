@@ -165,7 +165,7 @@ Vegetable Application
             <span>Price:{{vegetable.price}}</span>
             <span>Quatity:{{vegetable.quantity}}</span>
             <span>Expiry:{{vegetable.expiry}}</span>
-            <span>Posted_date : {{vegetable.posted_date  | date:"F d Y" }}</span>
+            <span>Posted_date : {{vegetable.posted_date | date:"F d Y" }}</span>
             {% comment %} <div class="flex justify-end ">
                 <a href ="{% url 'vayal_user:details_schemes' scheme.id  %}" class="text-lg text-gray-400 ">view</a>
             </div> {% endcomment %}

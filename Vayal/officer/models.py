@@ -1,5 +1,6 @@
 from django.db import models
 from vayal_user.models import Vayal_User
+from django.utils import timezone
 
 
 complaint_status = [('Pending', 'Pending'),
@@ -63,15 +64,21 @@ class Vegetable(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
     farm_details = models.ForeignKey(VegetablePermission, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
-    price = models.CharField(max_length=250)
-    quantity = models.CharField(max_length=250)
-    expiry =  models.CharField(max_length=250)
+    price = models.IntegerField()
+    quantity =  models.IntegerField()
+    expiry =  models.IntegerField()
     posted_date=models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to='photo')
     def __str__(self):
         return self.name 
 
 
+class LeaseLand(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    land_name= models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    land_lease_rent = models.DateTimeField(auto_now_add=True)
+    photo=models.ImageField(upload_to='documents/photo')
 
 class Complaint(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
