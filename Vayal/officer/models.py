@@ -57,7 +57,7 @@ class VegetablePermission(models.Model):
     status = models.CharField(max_length=50, choices=vegetable_permission_status, default='Pending')
 
     def __str__(self):
-        return self.title
+        return self.farm_name
 
 class Vegetable(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
@@ -66,9 +66,10 @@ class Vegetable(models.Model):
     price = models.CharField(max_length=250)
     quantity = models.CharField(max_length=250)
     expiry =  models.CharField(max_length=250)
+    posted_date=models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to='photo')
     def __str__(self):
-        return self.title
+        return self.name 
 
 
 

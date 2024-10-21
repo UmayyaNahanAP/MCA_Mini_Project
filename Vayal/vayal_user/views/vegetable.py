@@ -10,11 +10,11 @@ def vegetable_apply(request):
         form=VegetablePermissionForm(request.POST)#,instance=schem)
         if form.is_valid():
             form.save()
-            return redirect('vayal_user/schemes/')
+            return redirect('vayal_user/vegetable/index.html')
     form=VegetablePermissionForm()
-    return render(request,'vayal_user/application.html',{'form':form})
+    return render(request,'vayal_user/vegetable/application.html',{'form':form})
 
 
 def index(request):
     vegetables=Vegetable.objects.all()
-    return render(request,'vayal_user/vegetable/index.html',{' vegetables': vegetables})
+    return render(request,'vayal_user/vegetable/index.html',{'vegetables': vegetables})
