@@ -14,6 +14,5 @@ class VayalUserRegistrationForm(ModelForm):
     class Meta:
         model=Vayal_User
         fields=['name','dob','gender','phone_number','aadhar_number','cast',
-               'house_name','place','village','pincode','land_ownership']
-            #    ,'photo']
+               'house_name','place','village','pincode','land_ownership','photo']
         widgets = {'dob': DateInput()}

@@ -29,6 +29,6 @@ class Vayal_User(models.Model):
     muncipality=models.CharField(max_length=225,default="Kozhikode")
     district=models.CharField(max_length=225,default="Kozhikode")
     land_ownership=models.CharField(max_length=20, choices=land)
-    # photo=models.ImageField(upload_to='photo')
+    photo=models.ImageField(upload_to='photos')
     def __str__(self):
         return self.name
