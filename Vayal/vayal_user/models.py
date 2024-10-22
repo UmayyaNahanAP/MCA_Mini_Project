@@ -33,3 +33,14 @@ class Vayal_User(models.Model):
     vegetable_permission=models.CharField(max_length=225,default="Pending")
     def __str__(self):
         return self.name
+    
+
+class LeaseLand(models.Model):
+    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    land_name= models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    period=models.IntegerField()
+    land_lease_rent = models.DateTimeField(auto_now_add=True)
+    photo=models.ImageField(upload_to='land')
+    def __str__(self):
+        return self.land_name

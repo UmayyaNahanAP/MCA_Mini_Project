@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.forms import EmailField, PasswordInput, CharField
-from .models import Vayal_User
+from .models import Vayal_User,LeaseLand
 from django import forms
 
 
@@ -16,3 +16,9 @@ class VayalUserRegistrationForm(ModelForm):
         fields=['name','dob','gender','phone_number','aadhar_number','cast',
                'house_name','place','village','pincode','land_ownership','photo']
         widgets = {'dob': DateInput()}
+
+
+class LeaseLandForm(ModelForm):
+    class Meta:
+        model=LeaseLand
+        fields='__all__'
