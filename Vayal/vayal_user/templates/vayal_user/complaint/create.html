@@ -101,17 +101,13 @@ Complaints
       </div>
 
       <div class=" mx-auto   p-6 bg-white rounded-lg shadow-md ">
-        {% comment %} px-6 py-8 pr-36 -mt-8 {% endcomment %}
         <div class"mt-10">
-        {% comment %} <h2 class="text-md font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Registration</h2> {% endcomment %}
             <div class="bg-white rounded p-5">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
                     <div class="flex gap-3 mt-5">
-                       {% comment %} <input type='submit' value='save' class="text-white bg-green-300 hover:bg-green-700 border rounded border-transparent px-4 py-1"> {% endcomment %}
                         <button type='submit' value='save' class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
-                      
                         <button type='reset' value='clear' class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
                     </div>
                 </form>
