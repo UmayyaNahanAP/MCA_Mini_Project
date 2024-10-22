@@ -43,7 +43,7 @@ def index(request):
 def add(request):
     vayal_user = Vayal_User.objects.get(account=request.user)
     if request.POST:
-        form = Vegetable(request.POST)
+        form = Vegetable(request.POST,request.FILES)
         vegetable = form.save(commit=False)
         vegetable.vayal_user = vayal_user
         vegetable.save()

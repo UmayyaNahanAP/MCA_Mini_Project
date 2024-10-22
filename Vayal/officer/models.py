@@ -41,13 +41,12 @@ class SchemeApplication(models.Model):
     bank_name=models.CharField(max_length=255)
     branch=models.CharField(max_length=255)
     account_no=models.CharField(max_length=19)
-    photo=models.ImageField(upload_to='documents/photo')
-    sign=models.ImageField(upload_to='documents/sign')
-    aadhar=models.ImageField(upload_to='documents/aadhar')
-    land_tax=models.ImageField(upload_to='documents/land_tax')
-    bank_pass=models.ImageField(upload_to='documents/bank_pass')
+    sign=models.ImageField(upload_to='sign/')
+    aadhar=models.ImageField(upload_to='aadhar/')
+    land_tax=models.ImageField(upload_to='land_tax/')
+    bank_pass=models.ImageField(upload_to='bank_pass/')
     def __str__(self):
-        return self.name
+        return str(self.scheme)
 
 
 class VegetablePermission(models.Model):
@@ -68,7 +67,7 @@ class Vegetable(models.Model):
     quantity =  models.IntegerField()
     expiry =  models.IntegerField()
     posted_date=models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to='photo')
+    photo = models.ImageField(upload_to='vegetables')
     def __str__(self):
         return self.name 
 
@@ -78,7 +77,7 @@ class LeaseLand(models.Model):
     land_name= models.CharField(max_length=250)
     location = models.CharField(max_length=250)
     land_lease_rent = models.DateTimeField(auto_now_add=True)
-    photo=models.ImageField(upload_to='documents/photo')
+    photo=models.ImageField(upload_to='land')
 
 class Complaint(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)

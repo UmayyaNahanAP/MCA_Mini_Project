@@ -4,7 +4,7 @@ from vayal_user.forms import VayalUserRegistrationForm
 
 def index(request):
     if request.POST: 
-        form = VayalUserRegistrationForm(request.POST)
+        form = VayalUserRegistrationForm(request.POST,request.FILES)
         if form.is_valid():
             vayal_user = form.save(commit=False)
             account = User.objects.create_user(vayal_user.name,form.cleaned_data['email'],form.cleaned_data['password'])
