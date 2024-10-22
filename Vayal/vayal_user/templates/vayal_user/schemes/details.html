@@ -116,7 +116,7 @@ Home
                 <span> Start_date :{{scheme.start_date  | date:"F d Y" }}</span>
                 <span>End_date : {{scheme.end_date  | date:"F d Y" }}</span>
                 <div class="flex justify-end ">
-                    <a href ="{% url 'vayal_user:scheme_apply' %}" class="text-xl text-gray-400 ">Apply</a>
+                    <a href ="{% url 'vayal_user:scheme_apply' scheme.id %}" class="text-xl text-gray-400 ">Apply</a>
                 </div>
                 
                 
