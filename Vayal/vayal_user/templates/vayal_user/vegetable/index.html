@@ -87,14 +87,27 @@ Vegetable Application
 
             <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
                 <span>
-                    <a 
-                        {% if vayal_user.vegetable_permission == 'Pending' %} 
+                    {% comment %} <a 
+                        {% if vayal_user.vegetable_permission == 'Approved' %} 
                             href="{% url 'vayal_user:vegetable_permission_application' %}" 
-                        {% elif vayal_user.vegetable_permission == 'Approved' %} 
+                        {% elif vayal_user.vegetable_permission == 'Pending' %} 
                             href="{% url 'vayal_user:vegetables_add' %}" 
                         {% endif %}>
                         New
+                    </a> {% endcomment %}
+                    {% if vayal_user.vegetable_permission == 'Approved' %} 
+                    <a href="{% url 'vayal_user:vegetable_permission_application' %}">
+                        New
+                    </a> 
+                    {% endif %}
+                    {% if vayal_user.vegetable_permission == 'Pending' %} 
+                    <a href="{% url 'vayal_user:vegetables_add' %}" >
+                        New
                     </a>
+                        {% endif %}
+                     
+
+
                 </span>                    
             </span>
             {% comment %} <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
