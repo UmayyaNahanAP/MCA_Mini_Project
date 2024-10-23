@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Vayal_User,LeaseLand
 
-# Register your models here.
+
+admin.site.register(Vayal_User)
+admin.site.register(LeaseLand)
