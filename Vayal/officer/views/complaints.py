@@ -8,7 +8,7 @@ def index(request):
     status = request.GET.get('status')
     complaints = Complaint.objects.all()
     if  vayal_user:
-        complaints = complaints.filter(student__name__icontains= vayal_user)
+        complaints = complaints.filter(vayal_user__name__icontains= vayal_user)
     if status:
         complaints = complaints.filter(status=status)
     context = {

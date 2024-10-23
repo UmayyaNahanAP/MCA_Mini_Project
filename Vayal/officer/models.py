@@ -1,6 +1,7 @@
 from django.db import models
 from vayal_user.models import Vayal_User
 from django.utils import timezone
+import datetime
 
 
 complaint_status = [('Pending', 'Pending'),
@@ -12,6 +13,9 @@ vegetable_permission_status = [('Pending', 'Pending'),
                                ('Approved', 'Approved'),
                                ('Rejected', 'Rejected')]
 
+scheme_status = [('Pending', 'Pending'),
+                               ('Approved', 'Approved'),
+                               ('Rejected', 'Rejected')]
 
 schem_type = [('Janakeeyasoothranam','Janakeeyasoothranam'),
             ('Department of agriculture','Department of agriculture')]
@@ -45,6 +49,8 @@ class SchemeApplication(models.Model):
     aadhar=models.ImageField(upload_to='aadhar/')
     land_tax=models.ImageField(upload_to='land_tax/')
     bank_pass=models.ImageField(upload_to='bank_pass/')
+    applied_date=models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=scheme_status, default='Pending')
     def __str__(self):
         return str(self.scheme)
 
