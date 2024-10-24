@@ -5,12 +5,6 @@ Home
 {% block content %}
 
 
-  {% comment %} <div class=" relative w-full flex-none mb-2 text-2xl relative flex flex-wrap items-baseline pb-20 before:bg-emerald-400 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6">
-
-  </div> {% endcomment %}
-  
-  
-
 <div class="flex  bg-slate-100">
   <div class="w-2/12 bg-green-100 flex flex-col items-center pb-10">
       <div class="my-12 flex flex-col gap-2 justify-center items-center">
@@ -54,7 +48,7 @@ Home
               <path stroke-linecap="round" stroke-linejoin="round"
               d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
-            <a href="{% url 'vayal_user:complaints' %}">Lease land</a>
+            <a href="{% url 'vayal_user:lease_land' %}">Lease land</a>
         </li>
         <li class="w-full flex items-center px-5 py-1 gap-4 group hover:text-gray-500 cursor-pointer hover:border-green-700 hover:border-r-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -89,7 +83,7 @@ Home
             <h1 class="text-2xl font-bold">Schemes</h1>
         </div>
           <div class="relative">
-              <img id="profile" src="/uploads/{{student.image}}" class="h-6 w-6 rounded-full cursor-pointer" alt="">
+            <img id="profile" src="/uploads/{{vayal_user.photo}}" class="h-6 w-6 rounded-full cursor-pointer" alt="">
               <div id="popup" class="px-4 py-2 shadow hidden w-max text-sm -bottom-12 right-5 rounded bg-gray-50 flex flex-col">
                   <ul>
                       <li class="border-b-2 py-1"><span class="text-gray-400">Logged in as:</span> {{ request.user }}</li>

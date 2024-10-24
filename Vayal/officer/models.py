@@ -16,8 +16,8 @@ vegetable_permission_status = [('Pending', 'Pending'),
                                ('Rejected', 'Rejected')]
 
 scheme_status = [('Pending', 'Pending'),
-                               ('Approved', 'Approved'),
-                               ('Rejected', 'Rejected')]
+                 ('Approved', 'Approved'),
+                 ('Rejected', 'Rejected')]
 
 schem_type = [('Janakeeyasoothranam','Janakeeyasoothranam'),
             ('Department of agriculture','Department of agriculture')]

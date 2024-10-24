@@ -29,6 +29,7 @@ class VegetableForm(ModelForm):
     class Meta:
         model=Vegetable
         fields=['name','price','quantity','expiry','photo']
+        widgets = {'posted_date': DateInput()}
        
 
 
@@ -36,7 +37,8 @@ class CreateComplaintForm(ModelForm):
     class Meta:
         model = Complaint
         fields = ['title','description']
-
+        widgets = {'created_at': DateInput()}
+        
 
 class CreateNotificationForm(ModelForm):
     class Meta:

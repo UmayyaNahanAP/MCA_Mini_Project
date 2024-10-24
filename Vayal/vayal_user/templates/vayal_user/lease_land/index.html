@@ -48,7 +48,7 @@ Complaints
                 <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
-              <a href="{% url 'vayal_user:complaints' %}">Lease land</a>
+              <a href="{% url 'vayal_user:lease_land' %}">Lease land</a>
           </li>
           <li class="w-full flex items-center px-5 py-1 gap-4 border-r-4 text-black border-green-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" 
@@ -71,11 +71,11 @@ Complaints
       </div>
       <div class="w-10/12 h-screen overflow-y-auto px-8 py-14">
         <div class="flex justify-between mb-5">
-          <h1 class="text-2xl font-bold">Vegetables</h1>
+          <h1 class="text-2xl font-bold">Available lands</h1>
           <div class="flex items-center gap-4">
               <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
                   <span>
-                      <a href="{% url 'vayal_user:create_complaint' %}">
+                      <a href="{% url 'vayal_user:create_lease_land' %}">
                           New
                       </a> 
                      </span>                    
@@ -101,10 +101,12 @@ Complaints
       <div class="grid grid-cols-3 gap-x-4 gap-y-8">
         {% for lease_land in lease_land %}
         <div class="flex flex-col bg-white p-4 rounded-md gap-2">
-
-            {% comment %} <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{student.image}}" alt=""> {% endcomment %}
-            <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{land.photo}}" alt="">
+             {% comment %} <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{vegetable.photo}}" alt=""> {% endcomment %}
+            <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{lease_land.photo}}" alt="">
             <span class="text-2xl font-bold mb-4 pb-2 border-b-2 border-slate-200">{{lease_land.land_name}}</span>
+            <div class="flex justify-end ">
+                <a href ="{% url 'vayal_user:lease_land' %}" class="text-lg text-gray-400 ">Details</a>
+            </div>
         </div>
         {% endfor %}
     </div>

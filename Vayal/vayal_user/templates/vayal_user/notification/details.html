@@ -4,12 +4,6 @@ Notifications
 {% endblock header %}
 {% block content %}
 
-
-  {% comment %} <div class=" relative w-full flex-none mb-2 text-2xl relative flex flex-wrap items-baseline pb-20 before:bg-emerald-400 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6">
-
-  </div> {% endcomment %}
-
-
   <div class="flex  bg-slate-100">
     <div class="w-2/12 bg-green-100 flex flex-col items-center pb-10">
         <div class="my-12 flex flex-col gap-2 justify-center items-center">
@@ -108,12 +102,8 @@ Notifications
             {{notification.date}} <br>
              {{notification.description}} <br>
         </div>
-        
-{% comment %}        
-            <div class="border-none rounded-lg">
-               
-            </div> {% endcomment %}
         </div>
+    </div>
     
     </div>
 <script>
@@ -131,16 +121,3 @@ Notifications
     }
 </script>
 {% endblock content %}
-
-
-
-
-
-{% comment %} {% extends 'base.html' %} 
-{% block content %}
-
-    Title : {{notification.title}} <br>
-    Date : {{notification.date}} <br>
-    Discription : {{notification.description}} <br>
-
-{% endblock content %} {% endcomment %}
