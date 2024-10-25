@@ -5,7 +5,7 @@ from officer.models import Notification
 
 def index(request):
     vayal_user = Vayal_User.objects.get(account=request.user)
-    notifications = Notification.objects.filter(published=True)
+    notifications = Notification.objects.filter(published=True).order_by('-id')
     context = {
         'notifications': notifications,
         'vayal_user': vayal_user,

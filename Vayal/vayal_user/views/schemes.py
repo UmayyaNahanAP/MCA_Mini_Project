@@ -4,7 +4,7 @@ from vayal_user.models import Vayal_User
 
 
 def index(request):
-    schemes=Scheme.objects.all()
+    schemes=Scheme.objects.all().order_by('-id')
     vayal_user = Vayal_User.objects.get(account=request.user)
     context = {
         'schemes': schemes,

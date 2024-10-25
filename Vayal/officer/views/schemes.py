@@ -4,7 +4,7 @@ from officer.forms import CreateSchemeForm
 
 
 def index(request):
-    schemes=Scheme.objects.all()
+    schemes=Scheme.objects.all().order_by('-id')
     return render(request,'officer/schemes/index.html',{'schemes':schemes})
 
 

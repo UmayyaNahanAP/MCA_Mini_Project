@@ -7,7 +7,7 @@ from officer.forms import CreateComplaintForm
 
 def index(request):
     vayal_user = Vayal_User.objects.get(account=request.user)
-    complaints = Complaint.objects.filter(vayal_user=vayal_user)
+    complaints = Complaint.objects.filter(vayal_user=vayal_user).order_by('-id')
     context = {
         'complaints': complaints,
         'vayal_user': vayal_user,

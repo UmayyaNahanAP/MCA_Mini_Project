@@ -6,7 +6,7 @@ from officer.models import Complaint
 def index(request):
     vayal_user = request.GET.get(' vayal_user')
     status = request.GET.get('status')
-    complaints = Complaint.objects.all()
+    complaints = Complaint.objects.all().order_by('-id')
     if  vayal_user:
         complaints = complaints.filter(vayal_user__name__icontains= vayal_user)
     if status:
