@@ -40,7 +40,7 @@ class LeaseLand(models.Model):
     land_name= models.CharField(max_length=250)
     location = models.CharField(max_length=250)
     period=models.IntegerField()
-    land_lease_rent = models.DateTimeField(auto_now_add=True)
+    land_lease_rent = models.IntegerField()
     photo=models.ImageField(upload_to='land')
     def __str__(self):
         return self.land_name

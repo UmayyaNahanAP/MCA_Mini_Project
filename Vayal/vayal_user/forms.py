@@ -21,4 +21,4 @@ class VayalUserRegistrationForm(ModelForm):
 class LeaseLandForm(ModelForm):
     class Meta:
         model=LeaseLand
-        fields='__all__'
+        fields=['land_name','location','period','land_lease_rent','photo']

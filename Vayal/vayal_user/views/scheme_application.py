@@ -8,8 +8,6 @@ from django.http import HttpResponse
 def scheme_apply(request,id):
     vayal_user = Vayal_User.objects.get(account=request.user)
     scheme= Scheme.objects.get(id=id)
-    # if scheme.end_date < timezone.now().date():
-    #     return HttpResponse("The application period for this scheme has ended.")
     if request.POST:
         form=SchemeApplicationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -19,4 +17,9 @@ def scheme_apply(request,id):
             scheme_apply_form .save()
             return redirect('vayal_user:schemes')
     form=SchemeApplicationForm(instance=scheme)
-    return render(request,'vayal_user/scheme_application/index.html',{'form':form})
+    context = {
+        'form': form,
+        'scheme':scheme,
+        'vayal_user': vayal_user,
+    }
+    return render(request,'vayal_user/scheme_application/index.html',context)

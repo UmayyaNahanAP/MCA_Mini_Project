@@ -74,8 +74,8 @@ Home
             <h1 class="text-2xl font-bold">Complaints</h1>
             <div class="flex items-center gap-2">
                 <form class="flex items-center gap-2" method="get">
-                    <label for="simple-search" class="sr-only">Search User</label>
-                    <input name="vayal_user" type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Search User"> 
+                    {% comment %} <label for="simple-search" class="sr-only">Search User</label>
+                    <input name="vayal_user" type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Search User">  {% endcomment %}
                     <select name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected value="all" disabled selected>Filter by status</option>
                         <option value="Pending" {% if status == 'Pending'%} selected {% endif %}>Pending</option>

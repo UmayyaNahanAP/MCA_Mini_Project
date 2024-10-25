@@ -8,7 +8,12 @@ from vayal_user.forms import LeaseLand,LeaseLandForm
 
 def index(request):
     lease_land=LeaseLand.objects.all()
-    return render(request,'vayal_user/lease_land/index.html',{'lease_land':lease_land})
+    vayal_user = Vayal_User.objects.get(account=request.user)
+    context = {
+        'lease_land': lease_land,
+        'vayal_user': vayal_user,
+    }
+    return render(request,'vayal_user/lease_land/index.html',context)
 
 
 
@@ -20,19 +25,8 @@ def create(request):
             form.save()
             return redirect('vayal_user:lease_land')
     form=LeaseLandForm()
-    return render(request,'vayal_user/lease_land/create.html',{'form':form})
-
-def create(request):
-    vayal_user = Vayal_User.objects.get(account=request.user)
-    if request.POST:
-        form = CreateComplaintForm(request.POST)
-        complaint = form.save(commit=False)
-        complaint.vayal_user = vayal_user
-        complaint.save()
-        return redirect('vayal_user:complaints')
-    form = CreateComplaintForm()
     context = {
+        'form': form,
         'vayal_user': vayal_user,
-        'form': form
     }
-    return render(request, 'vayal_user/complaint/create.html', context)
+    return render(request,'vayal_user/lease_land/create.html',context)

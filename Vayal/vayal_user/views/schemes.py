@@ -10,7 +10,7 @@ def index(request):
         'schemes': schemes,
         'vayal_user': vayal_user,
     }
-    return render(request,'vayal_user/schemes/index.html',{'schemes':schemes})
+    return render(request,'vayal_user/schemes/index.html',context)
 
 def details(request,id):
     scheme=Scheme.objects.get(id=id)
@@ -19,5 +19,5 @@ def details(request,id):
         'scheme': scheme,
         'vayal_user': vayal_user,
     }
-    return render(request,'vayal_user/schemes/details.html',{'scheme':scheme})
+    return render(request,'vayal_user/schemes/details.html',context)
 
