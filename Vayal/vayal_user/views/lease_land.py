@@ -18,15 +18,23 @@ def index(request):
 
 
 def create(request):
+    print("1")
     vayal_user = Vayal_User.objects.get(account=request.user)
+    print("2")
     if request.POST:
-        form=LeaseLandForm(request.POST)
+        print("3")
+        form=LeaseLandForm(request.POST,request.FILES)
+        print("4")
+        print(form.errors)
         if form.is_valid():
+            print("5")
             form.save()
+            print("6")
             return redirect('vayal_user:lease_land')
     form=LeaseLandForm()
     context = {
         'form': form,
         'vayal_user': vayal_user,
     }
-    return render(request,'vayal_user/lease_land/create.html',context)
+    print("7")
+    return render(request,'vayal_user/lease_land/create.html',{'form': form,})

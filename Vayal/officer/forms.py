@@ -15,7 +15,7 @@ class SchemeApplicationForm(ModelForm):
     class Meta:
         model=SchemeApplication
         fields=['benefiting','house_number','ward_number','total_land_area','land_survay_no',
-                'bank_name','branch','account_no','sign','aadhar','land_tax']
+                'bank_name','branch','account_no','sign','aadhar','land_tax','bank_pass']
 
 
 class VegetablePermissionForm(ModelForm):

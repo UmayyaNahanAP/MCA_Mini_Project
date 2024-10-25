@@ -43,14 +43,6 @@ Scheme Application
   
               <a href="{% url 'officer:vegetables' %}">Vegetables</a>
           </li>
-          {% comment %} <li class="w-full flex items-center px-5 py-1 gap-4 group hover:text-gray-500 cursor-pointer hover:border-green-700 hover:border-r-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6 group-hover:text-green-700">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-              </svg>
-              <a href="{% url 'officer:complaints' %}">Lease land</a>
-          </li> {% endcomment %}
           <li class="w-full flex items-center px-5 py-1 gap-4 group hover:text-gray-500 cursor-pointer hover:border-green-700 hover:border-r-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 group-hover:text-green-700">
@@ -74,7 +66,7 @@ Scheme Application
       <div class="flex justify-between mb-5">
         
         <div class="flex items-center gap-2">
-            <a class="text-green-700" href="{% url 'officer:schemes' %}">
+            <a class="text-green-700" href="{% url 'officer:applied_users' scheme_application.scheme.id %}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>                      
@@ -102,48 +94,129 @@ Scheme Application
                 </div>
             </div>
         </div>
-        <div class="border-none rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr class="">
-                        <th scope="col" class="px-6 py-3">
-                           Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Applied Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3" colspan="2">
-                            Details
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                        <tr class="bg-white border-b last:border-none">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{scheme_application.vayal_user.name }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{scheme_application.applied_date }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{scheme_application.status }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {% comment %} <div class="flex">
-                                    <a href ="{% url 'officer:applied_user_details' scheme_application.id %}" class=" text-gray-400 ">View</a>
-                                </div> {% endcomment %}
-                            </td>
-                        </tr>
-                
-                </tbody>
-            </table>
+        <div class="bg-white rounded shadow-md p-9 ">
+            <div  class="border-none rounded-lg pr-5 pl-5">
+                <div class="bg-white rounded shadow-md p-9 pl-12 ">
+                    <h1 class="text-2xl font-bold text-center">{{scheme_application.scheme.name}}</h1>
+                    <div class="flex flex-row-reverse items-start gap-6">
+                        <img class="  h-36 w-36  my-5" src="/uploads/{{scheme_application.vayal_user.photo}}" alt="">
+                    </div>
+            <div class="border-none rounded-lg ">
+            <table class="table-auto text-sm text-left mb-4 ml-10">
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-8 py-2 text-base">Name</th>
+                    <td scope="col" class="px-12 py-2">{{  scheme_application.vayal_user.name}}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">DOB</th>
+                    <td scope="col" class="px-12 py-2">{{  scheme_application.vayal_user.dob | date:"F d Y" }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Gender</th>
+                    <td scope="col" class="px-12 py-2">{{  scheme_application.vayal_user.gender }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Cast</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.cast }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Phone no</th>
+                    <td scope="col" class="px-12 py-2">{{  scheme_application.vayal_user.phone_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Email</th>
+                    <td scope="col" class="px-12 py-2">{{  scheme_application.vayal_user.account.email }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Aadhar number</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.aadhar_number }}</td>
+                </tr>
+              
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">House name</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.house_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Place</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.place }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Village</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.village }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Pincode</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.pincode }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Muncipality</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.vayal_user.muncipality}}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">District</th>
+                    <td scope="col" class="px-12 py-2">{{scheme_application.vayal_user.district }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Land ownership</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.benefiting }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">House number</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.house_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Ward number </th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.ward_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Total land area</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.total_land_area }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Land survay no</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.land_survay_no}}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Bank name</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.bank_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Branch</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.branch }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Account_no</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.account_no }}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Sign</th>
+                    <td scope="col" class="px-12 py-2"><a href="{{ scheme_application.sign.url }}" download>Download Sign PDF</a></td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Aadhar</th>
+                    <td scope="col" class="px-12 py-2"><a href="{{ scheme_application.aadhar.url }}" download>Download Aadhar PDF</a></td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Land tax</th>
+                    <td scope="col" class="px-12 py-2"><a href="{{ scheme_application.land_tax.url }}" download>Download Land Tax PDF</a></td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Bank pass book</th>
+                    <td scope="col" class="px-12 py-2"><a href="{{ scheme_application.bank_pass.url }}" download>Download Bank Pass PDF</a></td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">Applied_date</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.applied_date}}</td>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">status</th>
+                    <td scope="col" class="px-12 py-2">{{ scheme_application.status}}</td>
+                </tr>
+            </table>  
         </div>
+    </div>
     </div> 
-
+    
 </div>
 <script>
   const profile = document.querySelector('#profile');

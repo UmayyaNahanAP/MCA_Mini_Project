@@ -14,8 +14,6 @@ urlpatterns = [
     path('schemes/<int:id>/delete/',schemes.delete,name='delete_schemes'),
     
     path('schemes/<int:id>/applied_users',scheme_application.index,name='applied_users'),
-
-    # path('user_details/<int:vayal_user_id>/<int:application_id>/',scheme_application.user_details, name='applied_user_details'),
     path('user_details/<int:application_id>/<int:vayal_user_id>/',scheme_application.user_details, name='applied_user_details'),
 
     path('complaint/<int:id>/applied_users/update/',scheme_application.update_status, name='update_applied_users_status'),

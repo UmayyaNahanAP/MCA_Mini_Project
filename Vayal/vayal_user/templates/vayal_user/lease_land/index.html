@@ -99,20 +99,83 @@ Complaints
           </div>
           </div>
       </div>
-      <div class="grid grid-cols-3 gap-x-4 gap-y-8">
+      {% comment %} <div class="grid grid-cols-3 gap-x-4 gap-y-8">
         {% for lease_land in lease_land %}
         <div class="flex flex-col bg-white p-4 rounded-md gap-2">
-             {% comment %} <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{vegetable.photo}}" alt=""> {% endcomment %}
+             
             <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{lease_land.photo}}" alt="">
             <span class="text-2xl font-bold mb-4 pb-2 border-b-2 border-slate-200">{{lease_land.land_name}}</span>
-            <div class="flex justify-end ">
-                <a href ="{% url 'vayal_user:lease_land' %}" class="text-lg text-gray-400 ">Details</a>
-            </div>
+            <span>Land_name:{{lease_land.land_name}}</span> 
+            <span>Location:{{lease_land.location}}</span>
+            <span>Period:{{lease_land.period}}</span>
+
         </div>
         {% endfor %}
+    </div> {% endcomment %}
+
+ 
+
+    <div class="grid grid-cols-3 gap-x-4 gap-y-8">
+        {% for lease_land in lease_land %}
+    <div class="flex flex-col bg-white p-4 rounded-md gap-4">
+        {% comment %} <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-8" src="/uploads/{{vegetable.photo}}" alt=""> {% endcomment %}
+        <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-5" src="/uploads/{{lease_land.photo}}" alt="">
+        <div class="flex flex-col gap-1">
+            <span class="text-2xl font-bold mb-2 pb-2 border-b-2 border-slate-200">{{vegetable.name }}</span>
+            <table class="table-auto text-sm text-left ">
+                <tr>
+                    <th scope="col" >Land_name</th>
+                    
+                    <th scope="col" class="px-1 py-2">{{lease_land.land_name}}</th>
+                </tr>
+                
+                <tr>
+                    <th scope="col" >Location:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.location}}</th>
+                </tr>
+                <tr>
+                    <th scope="col" >Period:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.period}}</th>
+                </tr>
+                <tr>
+                    <th scope="col" >Land lease rent:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.land_lease_rent}}</th>
+                </tr>
+            </table>
+            {% comment %} <table class="table-auto text-sm text-left ">
+                <tr>
+                    <th scope="col" >Land_name</th>
+                    
+                    <th scope="col" class="px-1 py-2">{{lease_land.land_name}}</th>
+                </tr>
+                
+                <tr>
+                    <th scope="col" >Location:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.location}}</th>
+                </tr>
+                <tr>
+                    <th scope="col" >Period:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.period}}</th>
+                </tr>
+                <tr>
+                    <th scope="col" >Land lease rent:</th>
+                    <th scope="col" class="px-1 py-2">{{lease_land.land_lease_rent}}</th>
+                </tr>
+            </table> {% endcomment %}
+            {% comment %} <div class="flex justify-end ">
+                <a href ="{% url 'vayal_user:vegetables'  %}" class="text-lg text-gray-400 ">Buy</a>
+            </div> {% endcomment %}
+            
+        {% comment %} <span class="text-2xl font-bold mb-2 pb-2 border-b-2 border-slate-200">{{vegetable.name }}</span>
+        <span>Price:{{vegetable.price}}</span>
+        <span>Quatity:{{vegetable.quantity}}</span>
+        <span>Expiry:{{vegetable.expiry}}</span>
+        <span>Posted_date : {{vegetable.posted_date | date:"m/d/Y" }}</span> {% endcomment %}
     </div>
 </div>
-
+{% endfor %}
+</div>
+</div>
 <script>
     const profile = document.querySelector('#profile');
     const popup = document.querySelector('#popup');

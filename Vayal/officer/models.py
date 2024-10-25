@@ -1,8 +1,6 @@
 from django.db import models
-
 from django.db import models
 from vayal_user.models import Vayal_User
-from django.utils import timezone
 import datetime
 
 

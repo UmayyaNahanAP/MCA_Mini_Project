@@ -41,6 +41,6 @@ class LeaseLand(models.Model):
     location = models.CharField(max_length=250)
     period=models.IntegerField()
     land_lease_rent = models.IntegerField()
-    photo=models.ImageField(upload_to='land')
+    photo=models.ImageField(upload_to='photo/')
     def __str__(self):
         return self.land_name
