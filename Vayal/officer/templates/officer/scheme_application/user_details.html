@@ -210,7 +210,17 @@ Scheme Application
                 </tr>
                 <tr>
                     <th scope="col" class="text-gray-400 font-medium pr-3 py-2 text-base">status</th>
-                    <td scope="col" class="px-12 py-2">{{ scheme_application.status}}</td>
+                    <td scope="col" class="px-12 py-2">
+                            <form method="post" action="{% url 'officer:update_applied_users_status'  scheme_application.id scheme_application.vayal_user.id %}">
+                                {% csrf_token %}
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="Pending" {% if scheme_application.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                    <option value="Approved" {% if scheme_application.status == 'Approved' %}selected{% endif %}>Approved</option>
+                                    <option value="Rejected" {% if scheme_application.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                </select>
+                            </form>
+
+                    </td>
                 </tr>
             </table>  
         </div>

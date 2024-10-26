@@ -15,8 +15,7 @@ urlpatterns = [
     
     path('schemes/<int:id>/applied_users',scheme_application.index,name='applied_users'),
     path('user_details/<int:application_id>/<int:vayal_user_id>/',scheme_application.user_details, name='applied_user_details'),
-
-    path('complaint/<int:id>/applied_users/update/',scheme_application.update_status, name='update_applied_users_status'),
+    path('schemes/applied_users/<int:application_id>/<int:vayal_user_id>/update/',scheme_application.update_status, name='update_applied_users_status'),
 
     path('vegetables/',vegetable.index,name='vegetables'),
     path('vegetables/user_details/<int:application_id>/<int:vayal_user_id>/',vegetable.user_details, name='vegetable_applied_user_details'),
