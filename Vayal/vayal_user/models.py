@@ -14,6 +14,10 @@ cast=[('General','General'),
 land=[('Own','Own'),
         ('Lease','Lease')]
 
+vegetable_permission_status = [('Pending', 'Pending'),
+                               ('Approved', 'Approved'),
+                               ('Rejected', 'Rejected')]
+
 class Vayal_User(models.Model):
     account = models.OneToOneField(User, on_delete=models.CASCADE)
     name=models.CharField(max_length=225)
@@ -30,7 +34,8 @@ class Vayal_User(models.Model):
     district=models.CharField(max_length=225,default="Kozhikode")
     land_ownership=models.CharField(max_length=20, choices=land)
     photo=models.ImageField(upload_to='photos/')
-    vegetable_permission=models.CharField(max_length=225,default="Pending")
+    vegetable_permission_applied=models.CharField(max_length=225,default="False")
+    vegetable_permission=models.CharField(max_length=225, choices=vegetable_permission_status,default="Pending")
     def __str__(self):
         return self.name
     

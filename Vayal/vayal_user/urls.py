@@ -16,8 +16,10 @@ urlpatterns = [
     path('schemes/<int:id>/scheme_apply/',schemes.scheme_apply,name='scheme_apply'),
     
     path('vegetables/',vegetable.index,name='vegetables'),
+    path('vegetables/add_button/',vegetable.add,name='add_button'),
     path('vegetable/permission_application/',vegetable.vegetable_apply,name='vegetable_permission_application'),
-    path('vegetables/add/',vegetable.add,name='vegetables_add'),
+    path('vegetable/permission_status/',vegetable.permission_status,name='vegetable_permission_status'),
+    path('vegetables/<int:id>/add_vegetable/',vegetable.add_vegetable,name='vegetables_add'),
 
     path('lease_land/',lease_land.index,name='lease_land'),
     path('lease_land/create',lease_land.create,name='create_lease_land'),

@@ -66,7 +66,7 @@ class VegetablePermission(models.Model):
         return self.farm_name
 
 class Vegetable(models.Model):
-    vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    # vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
     farm_details = models.ForeignKey(VegetablePermission, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
     price = models.IntegerField()

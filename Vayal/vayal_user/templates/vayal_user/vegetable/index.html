@@ -71,11 +71,11 @@ Complaints
       </div>
       <div class="w-10/12 h-screen overflow-y-auto px-8 py-14">
         <div class="flex justify-between mb-5">
-          <h1 class="text-2xl font-bold">Available lands</h1>
+          <h1 class="text-2xl font-bold">Available Vegetables</h1>
           <div class="flex items-center gap-4">
               <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
                   <span>
-                      <a href="{% url 'vayal_user:create_lease_land' %}">
+                      <a href="{% url 'vayal_user:add_button' %}">
                           New
                       </a> 
                      </span>                    
@@ -99,11 +99,8 @@ Complaints
           </div>
       </div>
       <div class="grid grid-cols-3 gap-x-4 gap-y-8">
-        {% for vegetable in vegetables %}
-
-        
-
-        {% comment %} <div class="flex flex-col bg-white p-4 rounded-md gap-2"> {% endcomment %}
+        {% if vegetables %}
+            {% for vegetable in vegetables %}
             <div class="flex flex-row bg-white p-4 rounded-md gap-4">
             <img class="cursor-pointer rounded-md h-36 w-36 object-cover my-8" src="/uploads/{{vegetable.photo}}" alt="">
             <div class="flex flex-col gap-1">
@@ -132,14 +129,20 @@ Complaints
                     <a href ="{% url 'vayal_user:vegetables'  %}" class="text-lg text-gray-400 ">Buy</a>
                 </div>
                 
-            {% comment %} <span class="text-2xl font-bold mb-2 pb-2 border-b-2 border-slate-200">{{vegetable.name }}</span>
-            <span>Price:{{vegetable.price}}</span>
-            <span>Quatity:{{vegetable.quantity}}</span>
-            <span>Expiry:{{vegetable.expiry}}</span>
-            <span>Posted_date : {{vegetable.posted_date | date:"m/d/Y" }}</span> {% endcomment %}
         </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="flex flex-col items-center justify-center col-span-3 text-center my-20">
+            <p class="text-2xl font-semibold text-gray-500 mb-4 mt-12">No vegetables available at the moment.</p>
+            <a href="{% url 'vayal_user:add_button' %}" class="text-3xl text-gray-500 hover:text-green-500 flex items-center gap-2">
+                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                  </svg>
+                </span>
+            </a>
+        </div>
+    {% endif %}
     </div>
 </div>
 

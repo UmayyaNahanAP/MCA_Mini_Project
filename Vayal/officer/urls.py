@@ -19,6 +19,8 @@ urlpatterns = [
     path('complaint/<int:id>/applied_users/update/',scheme_application.update_status, name='update_applied_users_status'),
 
     path('vegetables/',vegetable.index,name='vegetables'),
+    path('vegetables/user_details/<int:application_id>/<int:vayal_user_id>/',vegetable.user_details, name='vegetable_applied_user_details'),
+
 
     path('notification/',notification.index, name='notifications'),
     path('notification/<int:id>/',notification.details,name='details_notification'),
