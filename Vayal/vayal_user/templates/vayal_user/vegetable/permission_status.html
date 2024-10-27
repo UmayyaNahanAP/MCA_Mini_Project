@@ -104,7 +104,7 @@ Vegetable Application
             <h2 class="text-md font-bold leading-tight tracking-tight text-gray-600 text-center md:text-2xl">Detais of appliion</h2>
                 <div class="bg-white rounded p-5">
                     {% comment %} {{vegetable_permission.vayal_user.name}} {% endcomment %}
-
+                {% if  vegetable_permission %}
                     <table class="table-auto text-sm text-left mb-4">
                         <tr>
                             <th scope="col" class="text-gray-400 font-medium pr-3 py-2">Farm name</th>

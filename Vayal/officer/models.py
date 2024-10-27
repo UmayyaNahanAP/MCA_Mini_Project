@@ -59,6 +59,8 @@ class VegetablePermission(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
     farm_name = models.CharField(max_length=250)
     farm_place = models.CharField(max_length=250)
+    total_land_area = models.CharField(max_length=255)
+    land_survay_no= models.CharField(max_length=5)
     applied_date=models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=vegetable_permission_status, default='Pending')
 

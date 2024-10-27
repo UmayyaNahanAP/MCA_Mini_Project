@@ -160,37 +160,3 @@ Complaints
 </script>
 {% endblock content %}
 
-
-
-
-
-
-{% comment %} <div class="grid grid-cols-3 gap-x-4 gap-y-8">
-    {% for complaint in complaints %}
-        <div class="flex flex-col bg-white p-4 rounded-md gap-2">
-            <span class="text-xl font-bold mb-4 pb-2 border-b-2 border-slate-200">{{ complaint.title }}</span>
-            <table class="table-auto text-sm text-left mb-4">
-                <tr>
-                    <th scope="col" class="font-bold text-md text-gray-400 font-medium pr-3 py-2">Description:</th>
-                    <td scope="col" class="px-6 py-2">{{ complaint.description }}</td>
-                </tr>
-                <tr>
-                    <th scope="col" class="font-bold text-md text-gray-400 font-medium pr-3 py-2">Status:</th>
-                    <td scope="col" class="px-6 py-2">
-                        {% if complaint.status == 'Resolved' %}
-                        <span class="bg-green-100 text-green-400 px-2 py-1 text-xs rounded">{{ complaint.status }}</span>
-                        {% else %}
-                            <span class="bg-gray-100 text-gray-400 px-2 py-1 text-xs rounded">{{ complaint.status }}</span>
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
-            <div class="h-full">
-
-            </div>
-            <div class="flex justify-end">
-                <span class="text-sm text-gray-400">{{ complaint.created_at | date:"F d Y" }}</span>
-            </div>
-        </div>
-    {% endfor %}
-</div> {% endcomment %}
