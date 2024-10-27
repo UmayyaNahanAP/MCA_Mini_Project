@@ -11,9 +11,8 @@ urlpatterns = [
 
     path('schemes/',schemes.index,name='schemes'),
     path('schemes/<int:id>/',schemes.details,name='details_schemes'),
-    
-    # path('schemes/<int:id>/scheme_apply/',scheme_application.scheme_apply,name='scheme_apply'),
     path('schemes/<int:id>/scheme_apply/',schemes.scheme_apply,name='scheme_apply'),
+    path('schemes/applied_schemes',schemes.applied_schemes,name='applied_schemes'),
     
     path('vegetables/',vegetable.index,name='vegetables'),
     path('vegetables/add_button/',vegetable.add,name='add_button'),

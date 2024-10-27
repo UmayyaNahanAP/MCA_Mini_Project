@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from officer.models import Scheme
+from officer.models import Scheme,SchemeApplication
 from vayal_user.models import Vayal_User
 from officer.forms import SchemeApplicationForm
 from django.db.models import Q
@@ -11,7 +11,7 @@ def index(request):
                                     Q(cast_eligibility=vayal_user.cast) | 
                                     Q(cast_eligibility='All')).filter(
                                         Q(land_ownership=True) |
-                                        Q(land_ownership=vayal_user.land_ownership) |
+                                        Q(land_ownership=vayal_user.land_ownership) | 
                                         Q(land_ownership='All')).order_by('-id')
     context = {
         'schemes': schemes,
@@ -47,3 +47,11 @@ def scheme_apply(request,id):
     }
     return render(request,'vayal_user/schemes/scheme_application.html',context)
 
+def applied_schemes(request):
+    vayal_user = Vayal_User.objects.get(account=request.user) 
+    applied_schemes=SchemeApplication.objects.filter(vayal_user=vayal_user)
+    context = {
+        'applied_schemes':applied_schemes,
+        'vayal_user': vayal_user,
+    }
+    return render(request,'vayal_user/schemes/applied_schemes.html',context)

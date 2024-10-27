@@ -2,8 +2,6 @@ from django.shortcuts import render,redirect
 from vayal_user.models import Vayal_User
 from officer.models import Scheme
 from officer.forms import SchemeApplicationForm
-from django.utils import timezone  
-from django.http import HttpResponse
 
 def scheme_apply(request,id):
     vayal_user = Vayal_User.objects.get(account=request.user)

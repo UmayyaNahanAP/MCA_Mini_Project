@@ -99,6 +99,7 @@ Scheme Application
                 </div>
             </div>
         </div>
+        {% if  scheme_application %}
         <div class="border-none rounded-lg">
             <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -124,7 +125,7 @@ Scheme Application
                                 {{scheme_application.vayal_user.name }}
                             </th>
                             <td class="px-6 py-4">
-                                {{scheme_application.applied_date }}
+                                {{scheme_application.applied_date  | date:"F d Y" }}
                             </td>
                             <td class="px-6 py-4">
                                 {{scheme_application.status }}
@@ -150,9 +151,13 @@ Scheme Application
                     {% endfor %}
                 </tbody>
             </table>
+            {% else %}
+            <div class="flex flex-col items-center justify-center col-span-3 text-center my-20">
+                <p class="text-2xl font-semibold text-gray-500 mb-4 mt-12">No users have applied for this scheme.</p>
+            </div>
+        {% endif %}
         </div>
     </div>
-
 </div>
 <script>
   const profile = document.querySelector('#profile');
