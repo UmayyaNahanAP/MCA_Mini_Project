@@ -28,12 +28,16 @@ cast=[('All','All'),
     ('OBC','OBC'),
     ('SC/ST','SC/ST')]
 
+land=[('Own','Own'),
+        ('Lease','Lease')]
+
 class Scheme(models.Model):
     name=models.CharField(max_length=250)
     type=models.CharField(max_length=50,choices=schem_type)
     description=models.CharField(max_length=250)
     criteria=models.CharField(max_length=250)
     cast_eligibility = models.CharField(max_length=50,choices=cast,default='All')
+    land_ownership=models.CharField(max_length=20, choices=land,default='All')
     start_date=models.DateTimeField(auto_now_add=True)
     end_date=models.DateField()
 

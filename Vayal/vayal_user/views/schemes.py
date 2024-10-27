@@ -7,7 +7,12 @@ from django.db.models import Q
 
 def index(request):
     vayal_user = Vayal_User.objects.get(account=request.user) 
-    schemes = Scheme.objects.filter(Q(cast_eligibility__isnull=True) |  Q(cast_eligibility=vayal_user.cast) | Q(cast_eligibility='All')).order_by('-id')
+    schemes = Scheme.objects.filter(Q(cast_eligibility__isnull=True) |  
+                                    Q(cast_eligibility=vayal_user.cast) | 
+                                    Q(cast_eligibility='All')).filter(
+                                        Q(land_ownership=True) |
+                                        Q(land_ownership=vayal_user.land_ownership) |
+                                        Q(land_ownership='All')).order_by('-id')
     context = {
         'schemes': schemes,
         'vayal_user': vayal_user,
