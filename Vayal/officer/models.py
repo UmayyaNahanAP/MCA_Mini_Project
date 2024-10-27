@@ -23,11 +23,17 @@ schem_type = [('Janakeeyasoothranam','Janakeeyasoothranam'),
 benefiting=[('Yes','Yes'),
              ('No','No')]
 
+cast=[('All','All'),
+    ('General','General'),
+    ('OBC','OBC'),
+    ('SC/ST','SC/ST')]
+
 class Scheme(models.Model):
     name=models.CharField(max_length=250)
     type=models.CharField(max_length=50,choices=schem_type)
     description=models.CharField(max_length=250)
     criteria=models.CharField(max_length=250)
+    cast_eligibility = models.CharField(max_length=50,choices=cast,default='All')
     start_date=models.DateTimeField(auto_now_add=True)
     end_date=models.DateField()
 

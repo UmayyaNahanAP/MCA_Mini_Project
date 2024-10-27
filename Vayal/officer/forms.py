@@ -6,7 +6,7 @@ from .models import Scheme,SchemeApplication,VegetablePermission,Vegetable,Notif
 class CreateSchemeForm(ModelForm):
     class Meta:
         model=Scheme
-        fields=['name','type','description','criteria','end_date']
+        fields=['name','type','description','criteria','cast_eligibility','end_date']
         widgets = {
             'end_date': DateInput()
         }

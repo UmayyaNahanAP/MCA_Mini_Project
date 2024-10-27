@@ -2,11 +2,12 @@ from django.shortcuts import render,redirect
 from officer.models import Scheme
 from vayal_user.models import Vayal_User
 from officer.forms import SchemeApplicationForm
+from django.db.models import Q
 
 
 def index(request):
-    schemes=Scheme.objects.all().order_by('-id')
-    vayal_user = Vayal_User.objects.get(account=request.user)
+    vayal_user = Vayal_User.objects.get(account=request.user) 
+    schemes = Scheme.objects.filter(Q(cast_eligibility__isnull=True) |  Q(cast_eligibility=vayal_user.cast) | Q(cast_eligibility='All')).order_by('-id')
     context = {
         'schemes': schemes,
         'vayal_user': vayal_user,

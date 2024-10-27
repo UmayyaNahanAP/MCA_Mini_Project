@@ -9,7 +9,7 @@ gender=[
 
 cast=[('General','General'),
     ('OBC','OBC'),
-    ('OEC','OEC')]
+    ('SC/ST','SC/ST')]
 
 land=[('Own','Own'),
         ('Lease','Lease')]
