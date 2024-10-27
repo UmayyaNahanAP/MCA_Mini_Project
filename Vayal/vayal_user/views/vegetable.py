@@ -19,13 +19,14 @@ def add(request):
     if vayal_user.vegetable_permission_applied=="True" and vayal_user.vegetable_permission=="Pending":
         return redirect('vayal_user:vegetable_permission_status')
     if vayal_user.vegetable_permission_applied=="True" and vayal_user.vegetable_permission=="Approved":
+        farm_details=VegetablePermission.objects.get(vayal_user=vayal_user)
         if request.POST:
-            form = Vegetable(request.POST,request.FILES)
+            form = VegetableForm(request.POST,request.FILES)
             vegetable = form.save(commit=False)
-            vegetable.vayal_user = vayal_user
+            vegetable.farm_details = farm_details
             vegetable.save()
             return redirect('vayal_user:vegetables')
-        form = Vegetable()
+        form = VegetableForm()
         context = {
             'vayal_user': vayal_user,
             'form': form
@@ -37,7 +38,7 @@ def add(request):
 def vegetable_apply(request):
     vayal_user = Vayal_User.objects.get(account=request.user)
     if request.POST:
-        form=VegetablePermissionForm(request.POST)
+        form=VegetablePermissionForm(request.POST,request.FILES)
         if form.is_valid():
             application = form.save(commit=False)
             application.vayal_user = vayal_user
@@ -45,14 +46,17 @@ def vegetable_apply(request):
             vayal_user.vegetable_permission_applied="True"
             vayal_user.vegetable_permission="Pending"
             vayal_user.save()
-            return redirect('vayal_user:vegetables')
+            return redirect('vayal_user:vegetable_permission_status')
     form=VegetablePermissionForm()
     return render(request,'vayal_user/vegetable/application.html',{'form':form})
 
 
 def permission_status(request):
     vayal_user = Vayal_User.objects.get(account=request.user)
-    vegetable_permission = VegetablePermission.objects.get(vayal_user=vayal_user)
+    try:
+        vegetable_permission = VegetablePermission.objects.get(vayal_user=vayal_user)
+    except VegetablePermission.DoesNotExist:
+        vegetable_permission = None
     context = {
         'vayal_user': vayal_user,
         'vegetable_permission': vegetable_permission
@@ -77,18 +81,17 @@ def add_vegetable(request,id):
     return render(request,'vayal_user/vegetable/add.html',context)
 
 
-
-# def add(request):
+# def buy(request,id):
 #     vayal_user = Vayal_User.objects.get(account=request.user)
 #     if request.POST:
-#         form = Vegetable(request.POST,request.FILES)
+#         form = VegetableForm(request.POST,request.FILES)
 #         vegetable = form.save(commit=False)
-#         vegetable.vayal_user = vayal_user
+#         vegetable.farm_details = farm_details
 #         vegetable.save()
 #         return redirect('vayal_user:vegetables')
-#     form = Vegetable()
+#     form = VegetableForm()
 #     context = {
-#         'vayal_user': vayal_user,
+#         'farm_details': vayal_user,
 #         'form': form
 #     }
 #     return render(request,'vayal_user/vegetable/add.html',context)

@@ -22,9 +22,7 @@ class SchemeApplicationForm(ModelForm):
 class VegetablePermissionForm(ModelForm):
     class Meta:
         model=VegetablePermission
-        fields = ['farm_name','farm_place']
-
-
+        fields = ['farm_name','farm_place','total_land_area','land_survay_no','sign','aadhar','land_tax']
 
 class VegetableForm(ModelForm):
     class Meta:

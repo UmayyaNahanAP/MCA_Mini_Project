@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('vegetables/',vegetable.index,name='vegetables'),
     path('vegetables/user_details/<int:application_id>/<int:vayal_user_id>/',vegetable.user_details, name='vegetable_applied_user_details'),
-
+    path('vegetables/applied_users/<int:application_id>/<int:vayal_user_id>/update/',vegetable.update_status, name='update_vegetable_applied_users_status'),
 
     path('notification/',notification.index, name='notifications'),
     path('notification/<int:id>/',notification.details,name='details_notification'),

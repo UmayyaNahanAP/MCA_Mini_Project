@@ -1,7 +1,7 @@
 from django.db import models
 from django.db import models
 from vayal_user.models import Vayal_User
-import datetime
+import uuid
 
 
 complaint_status = [('Pending', 'Pending'),
@@ -61,6 +61,9 @@ class VegetablePermission(models.Model):
     farm_place = models.CharField(max_length=250)
     total_land_area = models.CharField(max_length=255)
     land_survay_no= models.CharField(max_length=5)
+    sign=models.ImageField(upload_to='vegetable_permission/sign/')
+    aadhar= models.FileField(upload_to='vegetable_permission/aadhar/')
+    land_tax= models.FileField(upload_to='vegetable_permission/land_tax/')
     applied_date=models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=vegetable_permission_status, default='Pending')
 
@@ -79,6 +82,18 @@ class Vegetable(models.Model):
     def __str__(self):
         return self.name 
 
+
+# class VegetablePurchase(models.Model):
+#     purchase_id = models.AutoField(primary_key=True)
+#     # purchase_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     vayal_user =models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+#     vegetable = models.ForeignKey(Vegetable, on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField()
+#     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+#     purchase_date = models.DateTimeField(auto_now_add=True)
+#     token_number = models.CharField(max_length=100, unique=True)  # Unique token for the purchase
+#     def __str__(self):
+#         return f"{self.vayal_user.name} - {self.vegetable.name} - {self.token_number}"
 
 class Complaint(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
