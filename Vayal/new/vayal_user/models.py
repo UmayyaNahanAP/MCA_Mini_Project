@@ -34,6 +34,7 @@ class Vayal_User(models.Model):
     district=models.CharField(max_length=225,default="Kozhikode")
     land_ownership=models.CharField(max_length=20, choices=land)
     photo=models.ImageField(upload_to='photos/')
+    joined_date=models.DateTimeField(auto_now_add=True,null=True)
     vegetable_permission_applied=models.CharField(max_length=225,default="False")
     vegetable_permission=models.CharField(max_length=225, choices=vegetable_permission_status,default="Pending")
     def __str__(self):

@@ -6,6 +6,7 @@ app_name='officer'
 urlpatterns = [
    
     path('home/',home.index,name='home'),
+    path('home/users',home.users,name='home_users'),
 
     path('schemes/',schemes.index,name='schemes'),
     path('schemes/create/',schemes.create,name='create_schemes'),
