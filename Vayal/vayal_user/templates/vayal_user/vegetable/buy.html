@@ -100,26 +100,89 @@ Vegetable Application
           </div>
       </div>
       
-{% comment %}     
       <div class=" mx-auto   p-6 bg-white rounded-lg shadow-md ">
         <div class"mt-10">
             <div class="bg-white rounded p-5">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
+                    <div>
+                        {{ form.quantity.label }}  <!-- Label for quantity -->
+                        {{ form.quantity }}         <!-- Quantity input -->
+                    </div>
                     <div class="flex gap-3 mt-5">
                         <button type='submit' value='save' class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
                       
                         <button type='reset' value='clear' class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
                     </div>
                 </form>
-            </div>
-        </div> {% endcomment %}
- 
+            </div> 
+            <script>
+                $(document).ready(function(){
+                    $("#id_quantity").change(function(){
+                        quantity=document.getElementById("id_quantity").value;
+                        price=document.getElementById("vegetable.id_price").value
+                        totalprice=quantity*price;
+                        document.getElementById("id_total_price").value= totalprice;
+                    });
+                });
+            </script>
+            {% comment %} <div class="bg-white rounded p-5">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <!-- Hidden input for the vegetable price -->
+                    <input type="hidden" id="id_price" value="{{ unit_price }}">
+                    
+                    <div>
+                        {{ form.quantity.label }}  <!-- Label for quantity -->
+                        {{ form.quantity }}         <!-- Quantity input -->
+                    </div>
+            
+                    <div>
+                        <label for="id_total_price">Total Price:</label>
+                        <input type="text" id="id_total_price" name="total_price" readonly>
+                    </div>
+            
+                    <div class="flex gap-3 mt-5">
+                        <button type='submit' value='save' class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                        <button type='reset' value='clear' class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
+                    </div>
+                </form>
+            </div> {% endcomment %}
+{% comment %}             
+            <script>
+                $(document).ready(function() {
+                    $("#id_quantity").change(function() {
+                        var quantity = parseFloat($("#id_quantity").val());
+                        var price = parseFloat($("#id_price").val()); 
+                        if (!isNaN(quantity) && !isNaN(price)) {
+                            var totalPrice = quantity * price;
+                            $("#id_total_price").val(totalPrice.toFixed(2)); 
+                        } else {
+                            $("#id_total_price").val(''); 
+                        }
+                    });
+                });
+            </script> {% endcomment %}
+
+        </div>
         
     </div>
 
 </div>
+
+{% comment %} <script>
+    $(document).ready(function(){
+        $("#id_quantity").change(function(){
+            quantity=document.getElementById("id_quantity").value;
+            price=document.getElementById("vegetable.id_price").value
+            totalpriceprice=quantity*price;
+            document.getElementById("id_total_price").value=price;
+        });
+    });
+</script>  {% endcomment %}
 
 <script>
   const profile = document.querySelector('#profile');

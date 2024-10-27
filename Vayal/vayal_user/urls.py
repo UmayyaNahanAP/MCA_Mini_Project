@@ -20,6 +20,7 @@ urlpatterns = [
     path('vegetable/permission_application/',vegetable.vegetable_apply,name='vegetable_permission_application'),
     path('vegetable/permission_status/',vegetable.permission_status,name='vegetable_permission_status'),
     path('vegetables/<int:id>/add_vegetable/',vegetable.add_vegetable,name='vegetables_add'),
+    path('vegetables/<int:id>/buy/',vegetable.buy_vegetable,name='vegetables_purchase'),
 
     path('lease_land/',lease_land.index,name='lease_land'),
     path('lease_land/create',lease_land.create,name='create_lease_land'),

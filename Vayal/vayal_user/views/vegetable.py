@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from vayal_user.models import Vayal_User
 from officer.models import Vegetable,VegetablePermission
-from officer.forms import VegetablePermissionForm,VegetableForm
+from officer.forms import VegetablePermissionForm,VegetableForm,VegetablePurchaseForm
 
 
 def index(request):
@@ -69,10 +69,11 @@ def add_vegetable(request,id):
     farm_details=VegetablePermissionForm.objects.get(id=id)
     if request.POST:
         form = VegetableForm(request.POST,request.FILES)
-        vegetable = form.save(commit=False)
-        vegetable.farm_details = farm_details
-        vegetable.save()
-        return redirect('vayal_user:vegetables')
+        if form.is_valid():
+            vegetable = form.save(commit=False)
+            vegetable.farm_details = farm_details
+            vegetable.save()
+            return redirect('vayal_user:vegetables')
     form = VegetableForm()
     context = {
         'farm_details': vayal_user,
@@ -80,18 +81,69 @@ def add_vegetable(request,id):
     }
     return render(request,'vayal_user/vegetable/add.html',context)
 
+def buy_vegetable(request, id):
+    vayal_user = Vayal_User.objects.get(account=request.user)
+    vegetable = Vegetable.objects.get(id=id)
+    unit_price = vegetable.price 
+    if request.method == 'POST':
+        form = VegetablePurchaseForm(request.POST)
+        if form.is_valid():
+            vegetable_purchase_form = form.save(commit=False)
+            vegetable_purchase_form.vayal_user = vayal_user
+            vegetable_purchase_form.vegetable = vegetable
+            vegetable_purchase_form.total_price = form.cleaned_data['quantity'] * unit_price
+            vegetable_purchase_form.save()     
+            return redirect('vayal_user:vegetables')
+    else:
+        form = VegetablePurchaseForm()
 
-# def buy(request,id):
+    context = {
+        'vayal_user': vayal_user,
+        'form': form,
+        'unit_price': unit_price,
+    }
+    return render(request, 'vayal_user/vegetable/add.html', context)    
+    # if request.method == 'POST':
+    #     form = VegetablePurchaseForm(request.POST)
+    #     if form.is_valid():
+    #         vegetable_purchase_form = form.save(commit=False)
+    #         vegetable_purchase_form.vayal_user = vayal_user
+    #         vegetable_purchase_form.vegetable = vegetable
+            
+    #         # Calculate the total price based on quantity
+    #         vegetable_purchase_form.total_price = form.cleaned_data['quantity'] * unit_price
+    #         vegetable_purchase_form.save()  # Save the purchase record
+            
+    #         return redirect('vayal_user:vegetables')  # Redirect after successful save
+    # else:
+    #     form = VegetablePurchaseForm()
+
+    # context = {
+    #     'vayal_user': vayal_user,
+    #     'form': form,
+    #     'unit_price': unit_price,
+    # }
+    # return render(request, 'vayal_user/vegetable/add.html', context)
+
+
+
+
+
+# def buy_vegetable(request,id):
 #     vayal_user = Vayal_User.objects.get(account=request.user)
+#     vegetable=Vegetable.objects.get(id=id)
 #     if request.POST:
-#         form = VegetableForm(request.POST,request.FILES)
-#         vegetable = form.save(commit=False)
-#         vegetable.farm_details = farm_details
-#         vegetable.save()
-#         return redirect('vayal_user:vegetables')
-#     form = VegetableForm()
+#         form = VegetablePurchaseForm(request.POST)
+#         if form.is_valid():
+#             vegetable_purchase_form = form.save(commit=False)
+#             vegetable_purchase_form.vayal_user = vayal_user
+#             vegetable_purchase_form.vegetable=vegetable
+#             vegetable_purchase_form.save()
+#             return redirect('vayal_user:vegetables')
+#     form = VegetablePurchaseForm()
 #     context = {
-#         'farm_details': vayal_user,
-#         'form': form
-#     }
+#             'vayal_user': vayal_user,
+#             'form': form
+#         }
 #     return render(request,'vayal_user/vegetable/add.html',context)
+

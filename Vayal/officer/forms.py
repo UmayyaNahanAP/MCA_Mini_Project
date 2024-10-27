@@ -1,5 +1,5 @@
 from django.forms import ModelForm,DateInput
-from .models import Scheme,SchemeApplication,VegetablePermission,Vegetable,Notification,Complaint
+from .models import Scheme,SchemeApplication,VegetablePermission,Vegetable,VegetablePurchase,Notification,Complaint
 
 
 
@@ -29,7 +29,17 @@ class VegetableForm(ModelForm):
         model=Vegetable
         fields=['name','price','quantity','expiry','photo']
         widgets = {'posted_date': DateInput()}
-       
+
+from django import forms
+class VegetablePurchaseForm(ModelForm):
+    class Meta:
+        model=VegetablePurchase
+        fields=['quantity','total_price']
+        widgets = {
+            # 'total_price': forms.TextInput(attrs={'readonly': 'readonly'}),  # Disable manual input
+            'purchase_date': DateInput(),
+        }
+
 
 
 class CreateComplaintForm(ModelForm):
