@@ -97,6 +97,7 @@ Scheme
             </div>
         </div>
       <div class="grid grid-cols-3 gap-x-4 gap-y-8">
+        {% if schemes %}
         {% for scheme in schemes %}
             <div class="flex flex-col bg-white p-4 rounded-md gap-2">
                 <span class="text-2xl font-bold mb-4 pb-2 border-b-2 border-slate-200">{{scheme.name }}</span>
@@ -107,6 +108,17 @@ Scheme
                 </div>
             </div>
         {% endfor %}
+        {% else %}
+        <div class="flex flex-col items-center justify-center col-span-3 text-center my-20">
+            <p class="text-2xl font-semibold text-gray-500 mb-4 mt-12">No schemes available at the moment.</p>
+            <a href="{% url 'officer:create_schemes' %}" class="text-3xl text-gray-500 hover:text-green-500 flex items-center gap-2">
+                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                  </svg>
+                </span>
+            </a>
+        </div>
+    {% endif %}
     </div>
   </div>
 

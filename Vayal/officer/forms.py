@@ -8,8 +8,9 @@ class CreateSchemeForm(ModelForm):
         model=Scheme
         fields='__all__'
         widgets = {
-            'date': DateInput()
+            'end_date': DateInput()
         }
+
 
 class SchemeApplicationForm(ModelForm):
     class Meta:
