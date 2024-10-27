@@ -1,5 +1,6 @@
 from django.forms import ModelForm,DateInput
 from django.forms import EmailField, PasswordInput, CharField
+from django import forms
 from .models import Agricultural_officer,Vayal_User,Scheme,SchemeApplication,VegetablePermission,Vegetable,VegetablePurchase,Notification,Complaint,LeaseLand
 
 
@@ -10,8 +11,8 @@ class Agricultural_officerRegistrationForm(ModelForm):
     email = EmailField()
     password = CharField(widget=PasswordInput())
     class Meta:
-        model=Vayal_User
-        fields=['name','phone_number',' unique_code']
+        model=Agricultural_officer
+        fields=['name','phone_number','unique_code']
         widgets = {'dob': DateInput()}
 
 
@@ -30,6 +31,7 @@ class CreateSchemeForm(ModelForm):
         model=Scheme
         fields=['name','type','description','criteria','cast_eligibility','land_ownership','start_date','end_date']
         widgets = {
+            'start_date': DateInput(),
             'end_date': DateInput()
         }
 

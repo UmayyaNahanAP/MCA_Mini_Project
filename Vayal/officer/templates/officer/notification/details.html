@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+    Title : {{notification.title}} <br>
+    Date : {{notification.date}} <br>
+    Discription : {{notification.description}} <br>
+    Status : {% if notification.published %}Published
+    {% else %}
+        Draft
+    {% endif %}
+
+{% endblock content %}
