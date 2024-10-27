@@ -18,6 +18,15 @@ def index(request):
     }
     return render(request, 'officer/complaint/index.html', context)
 
+def details(request,id):
+    vayal_user = request.GET.get(' vayal_user')
+    complaint=Complaint.objects.get(id=id)
+    context = {
+        'vayal_user':  vayal_user,
+        'complaint': complaint,
+    }
+    return render(request,'officer/complaint/details.html',context)
+
 
 def mark_resolved(request, id):
     complaint = Complaint.objects.get(id=id)

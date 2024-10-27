@@ -110,65 +110,45 @@ Home
             </div>                                       
             </div>
         </div>
-
-        {% if vayal_user or status %}
-        <div class="flex gap-4 pb-4 text-sm text-gray-400">
-            <span>
-                Showing filtered complaints. 
-            </span>
-            <a href="{% url 'officer:complaints' %}" class="text-gray-300">Clear filter</a>
-        </div> 
-        {% endif %}
-        <div class="border-none rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr class="">
-                        <th scope="col" class="px-6 py-3">
-                            Title
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Posted Date
-                        </th>
-                        <th scope="col" class="px-6 py-3" >
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3" colspan="2">
-                            Details
-                         </th>
+        <div class="max-h-xl mx-auto mt-12 p-6 bg-white rounded-lg shadow-md ">
+            <div class="flex flex-col text-xl bg-white p-4 rounded-md gap-2">
+                <table class="table-auto text-sm text-left mb-4">
+                    <tr>
+                        <th scope="col" class="text-gray-400 font-base pr-3 py-2">Tiltle</th>
+                        <td scope="col" class="px-6 py-2">{{ complaint.title }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for complaint in complaints %}
-                        <tr class="bg-white border-b last:border-none">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ complaint.title }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{ complaint.created_at }}
-                            </td>
-                            <td class="px-6 py-4">
-                                <form method="post" action="{% url 'officer:update_complaint_status' complaint.id %}">
-                                    {% csrf_token %}
-                                    <select name="status" onchange="this.form.submit()">
-                                        <option value="Pending" {% if complaint.status == 'Pending' %}selected{% endif %}>Pending</option>
-                                        <option value="In Progress" {% if complaint.status == 'In Progress' %}selected{% endif %}>In Progress</option>
-                                        <option value="Resolved" {% if complaint.status == 'Resolved' %}selected{% endif %}>Resolved</option>
-                                        <option value="Unresolvable" {% if complaint.status == 'Unresolvable' %}selected{% endif %}>Unresolvable</option>
-                                    </select>
-                                </form>
-                            </td>
-                            <td class="px-6 py-4">
-                               view
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    <tr>
+                        <th scope="col" class="text-gray-400 font-base pr-3 py-2"> Description</th>
+                        <td scope="col" class="px-6 py-2">{{ complaint.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-gray-400 font-base pr-3 py-2">Posted date</th>
+                        <td scope="col" class="px-6 py-2"> {{ complaint.created_at  | date:"F d Y" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-gray-400 font-base pr-3 py-2">Complainmted by</th>
+                        <td scope="col" class="px-6 py-2">  {{ complaint.vayal_user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-gray-400 font-base pr-3 py-2">Status</th>
+                        <td scope="col" class="px-6 py-2">
+                            <form method="post" action="{% url 'officer:update_complaint_status' complaint.id %}">
+                                {% csrf_token %}
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="Pending" {% if complaint.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                    <option value="In Progress" {% if complaint.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                    <option value="Resolved" {% if complaint.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+                                    <option value="Unresolvable" {% if complaint.status == 'Unresolvable' %}selected{% endif %}>Unresolvable</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
-
-</div>
-
+        
+        </div>
+      </div>
 <script>
   const profile = document.querySelector('#profile');
   const popup = document.querySelector('#popup');

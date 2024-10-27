@@ -28,6 +28,7 @@ urlpatterns = [
     path('notification/<int:id>/delete/',notification.delete, name='delete_notification'),
 
     path('complaint/',complaints.index, name='complaints'),
+    path('complaint/details/<int:id>',complaints.details, name='complaints_details'),
     path('complaint/<int:id>/resolve/',complaints.mark_resolved, name='resolve_complaint'),
     path('complaint/<int:id>/update/',complaints.update_status, name='update_complaint_status'),
     path('complaint/<int:id>/delete/',complaints.delete, name='delete_complaint')

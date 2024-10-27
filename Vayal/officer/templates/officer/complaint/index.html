@@ -110,7 +110,7 @@ Home
             </div>                                       
             </div>
         </div>
-    {% if  complaints %}
+   
         {% if vayal_user or status %}
         <div class="flex gap-4 pb-4 text-sm text-gray-400">
             <span>
@@ -119,6 +119,7 @@ Home
             <a href="{% url 'officer:complaints' %}" class="text-gray-300">Clear filter</a>
         </div> 
         {% endif %}
+        {% if  complaints %}
         <div class="border-none rounded-lg">
             <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -144,21 +145,13 @@ Home
                                 {{ complaint.title }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ complaint.created_at }}
+                                {{ complaint.created_at  | date:"F d Y" }}
                             </td>
                             <td class="px-6 py-4">
-                                <form method="post" action="{% url 'officer:update_complaint_status' complaint.id %}">
-                                    {% csrf_token %}
-                                    <select name="status" onchange="this.form.submit()">
-                                        <option value="Pending" {% if complaint.status == 'Pending' %}selected{% endif %}>Pending</option>
-                                        <option value="In Progress" {% if complaint.status == 'In Progress' %}selected{% endif %}>In Progress</option>
-                                        <option value="Resolved" {% if complaint.status == 'Resolved' %}selected{% endif %}>Resolved</option>
-                                        <option value="Unresolvable" {% if complaint.status == 'Unresolvable' %}selected{% endif %}>Unresolvable</option>
-                                    </select>
-                                </form>
+                                {{ complaint.status}}
                             </td>
                             <td class="px-6 py-4">
-                               view
+                                    <a href ="{% url 'officer:complaints_details' complaint.id  %}" class="text-base text-gray-400 ">view</a>
                             </td>
                         </tr>
                     {% endfor %}
