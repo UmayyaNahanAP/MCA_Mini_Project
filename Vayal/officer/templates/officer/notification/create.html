@@ -60,15 +60,18 @@ Notifications
 
       </ul>
     </div>
+
     <div class="w-10/12 h-screen overflow-y-auto px-8 py-14">
         <div class="flex justify-between mb-5">
-            <h1 class="text-2xl font-bold">Notifications</h1>
-            <div class="flex items-center gap-4">
-                <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
-                    <span>
-                        <a href="{% url 'officer:create_notification' %}">New</a> 
-                    </span>                    
-                </span>
+          
+          <div class="flex items-center gap-2">
+              <a class="text-green-700" href="{% url 'officer:notifications' %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  </svg>                      
+              </a>
+              <h1 class="text-2xl font-bold">New notification</h1>
+          </div>
                 <div class="relative">
                 <img id="profile" src="/uploads/{{vayal_user.photo}}" class="h-6 w-6 rounded-full cursor-pointer" alt="">
                 <div id="popup" class="px-4 py-2 shadow hidden w-max text-sm -bottom-12 right-5 rounded bg-gray-50 flex flex-col">
@@ -84,7 +87,6 @@ Notifications
                         </a>
                     </ul>
                 </div>
-            </div>
             </div>
         </div>
         <div class=" mx-auto   p-6 bg-white rounded-lg shadow-md ">
