@@ -4,6 +4,8 @@ from django.contrib.auth import urls
 from django.conf import settings
 from django.conf.urls.static import static
 from common.views import login_user
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
 
