@@ -107,13 +107,10 @@ class Complaint(models.Model):
 
 
 class Notification(models.Model):
-    # cast = models.CharField(max_length=20, choices=Vayal_User.cast)
     vayal_user = models.ForeignKey(Vayal_User,null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.TextField()
-    # attachment = models.FileField(upload_to='notifications/', blank=True, null=True)
-    date = models.DateField()
-    published = models.BooleanField(default=False)
+    date =models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.title

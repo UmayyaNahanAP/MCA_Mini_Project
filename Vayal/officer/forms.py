@@ -42,7 +42,7 @@ class CreateComplaintForm(ModelForm):
 class CreateNotificationForm(ModelForm):
     class Meta:
         model = Notification
-        fields = ['title','description','date','published']
+        fields = ['title','description']
         widgets = {
             'date': DateInput()
         }

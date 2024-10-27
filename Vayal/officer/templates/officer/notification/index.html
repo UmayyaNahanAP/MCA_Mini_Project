@@ -92,16 +92,8 @@ Notifications
                 <div class="flex flex-col bg-white p-4 rounded-md gap-2">
                     <span class="text-2xl font-bold mb-4 pb-2 border-b-2 border-slate-200">{{ notification.title }}</span>
                     <span>{{ notification.description }}</span>
-                    {% if notification.attachment %}
-                        <a target="_blank" class="flex gap-2 items-center underline" href="/uploads/{{notification.attachment}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
-                            </svg>
-                            Attachment
-                        </a>
-                    {% endif %}
                     <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">{{ notification.date }}</span>
+                        <span class="text-sm text-gray-400">{{ notification.date | date:"F d Y" }}</span>
                         <div class="flex space-x-2">
                             <a href="{% url 'officer:update_notification' notification.id %}" class="text-sm text-gray-400">Edit</a>
                             <a href="{% url 'officer:delete_notification' notification.id %}" class="text-sm text-gray-400">Delete</a>

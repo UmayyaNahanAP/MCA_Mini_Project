@@ -6,13 +6,7 @@ from officer.models import Notification
 def index(request):
     status = request.GET.get('status')
     notifications = Notification.objects.all().order_by('-id')
-    if status:
-        notifications = notifications.filter(published=status == 'published')
-    context = {
-        'notifications': notifications,
-        'status': status
-    }
-    return render(request, 'officer/notification/index.html', context)
+    return render(request, 'officer/notification/index.html',{ 'notifications': notifications})
 
 def details(request,id):
     notification=Notification.objects.get(id=id)
