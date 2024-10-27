@@ -73,13 +73,13 @@ Complaints
         <div class="flex justify-between mb-5">
           <h1 class="text-2xl font-bold">Complaints</h1>
           <div class="flex items-center gap-4">
-              <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
+              {% comment %} <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
                   <span>
                       <a href="{% url 'vayal_user:create_complaint' %}">
                           New
                       </a> 
                      </span>                    
-              </span>
+              </span> {% endcomment %}
               <div class="relative">
               <img id="profile" src="/uploads/{{vayal_user.photo}}" class="h-6 w-6 rounded-full cursor-pointer" alt="">
               <div id="popup" class="px-4 py-2 shadow hidden w-max text-sm -bottom-12 right-5 rounded bg-gray-50 flex flex-col">
