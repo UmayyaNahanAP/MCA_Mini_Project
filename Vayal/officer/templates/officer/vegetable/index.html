@@ -107,6 +107,7 @@ Scheme
             <a href="{% url 'officer:vegetables' %}" class="text-gray-300">Clear filter</a>
         </div> 
         {% endif %}
+        {% if  vegetable_permissions %}
         <div class="border-none rounded-lg">
             <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -145,6 +146,11 @@ Scheme
                 </tbody>
             </table>
         </div>
+        {% else %}
+        <div class="flex flex-col items-center justify-center col-span-3 text-center my-20">
+            <p class="text-2xl font-semibold text-gray-500 mb-4 mt-12">No users have applied for permission to sell vegetables.</p>
+        </div>
+    {% endif %}
     </div>
 </div>
 <script>
