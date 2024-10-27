@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+{% load static %}
 {% block header %}
 Home
 {% endblock header %}
@@ -55,6 +56,12 @@ Home
     <div class="w-10/12 h-screen overflow-y-auto px-8 py-14">
       <div class="flex justify-between mb-5">
           <h1 class="text-2xl font-bold">Home</h1>
+          <div class="flex items-center gap-4">
+            <span class="px-4 py-2 flex gap-1 bg-green-100 text-green-400 border cursor-pointer border-green-300 font-bold rounded-md">
+                <span>
+                    <a href="{% url 'officer:create_schemes' %}">All Residents</a> 
+                </span>                    
+            </span>
           <div class="relative">
               <img id="profile" src="/uploads/{{student.image}}" class="h-6 w-6 rounded-full cursor-pointer" alt="">
               <div id="popup" class="px-4 py-2 shadow hidden w-max text-sm -bottom-12 right-5 rounded bg-gray-50 flex flex-col">
@@ -72,7 +79,118 @@ Home
               </div>
           </div>
       </div>
-     
+    </div>
+      <div class="flex justify-between items-center gap-8 py-4">
+        <!-- Left side: Scheme, Complaint, User counts -->
+        <div class="flex flex-col gap-6 w-1/3 justify-center">
+            <div class="flex items-center gap-2 bg-white px-4 py-4 rounded shadow-sm">
+                <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ scheme_count }}</span>
+                <div class="flex flex-col">
+                    <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                    <span class="text-xl text-gray-700 font-bold">Scheme</span>
+                </div>
+            </div> 
+            <div class="flex items-center gap-2 bg-white px-4 py-4 rounded shadow-sm">
+                <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ complaint_count }}</span>
+                <div class="flex flex-col">
+                    <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                    <span class="text-xl text-gray-700 font-bold">Complaints</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-white px-4 py-4 rounded shadow-sm">
+                <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ vayal_user_count }}</span>
+                <div class="flex flex-col">
+                    <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                    <span class="text-xl text-gray-700 font-bold">User</span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Right side: Reduced top padding for Analytics section -->
+        <div class="w-2/3 bg-white rounded  pb-2 px-6">
+            <h1 class="text-lg font-bold mb-4">Analytics</h1>
+            <div id="chart1" class="w-full h-96">
+                <!-- Chart goes here -->
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+      {% comment %} <div class="flex justify-evenly gap-8 mb-8">
+        <div class="flex w-full  items-center gap-2 bg-white px-4 py-2 rounded">
+            <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ scheme_count }}</span>
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                <span class="text-xl text-gray-700 font-bold">Scheme</span>
+            </div>
+        </div> 
+        <div class="flex w-full  items-center gap-2 bg-white px-4 py-2 rounded">
+            <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ complaint_count }}</span>
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                <span class="text-xl text-gray-700 font-bold">Complaints</span>
+            </div>
+        </div>
+        <div class="flex w-full  items-center gap-2 bg-white px-4 py-2 rounded">
+            <span class="text-4xl bg-green-100 text-green-500 p-2 rounded font-bold">{{ vayal_user_count }}</span>
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-300 uppercase font-medium">Total</span>
+                <span class="text-xl text-gray-700 font-bold">User</span>
+            </div>
+        </div>
+      
+    </div>
+    <div class="flex justify-between px-5 mb-5">
+        <h1 class="text-lg font-bold">Analytics</h1>
+    </div>
+    <div class="flex gap-4 mb-8">
+        <div class="bg-white rounded p-4 pb-8 w-2/3" id="chart1">
+
+        </div>
+
+    </div>
+</div>
+
+</div> {% endcomment %}
+
+<script src="{% static 'js/apexcharts.min.js' %}"></script>
+<script>
+const options1 = {
+    chart: {
+        type: 'pie',
+        height: '400px'
+    },
+    series: [
+        {% for key, value in scheme_analytics.items %}
+            {{ value }},
+        {% endfor %}
+    ],
+    labels: [
+        {% for cast_eligibility in scheme_analytics %}
+            '{{ cast_eligibility }}',
+        {% endfor %}
+    ],
+    colors: ['#15803D', '#4ADE80', '#BBF7D0'], 
+    title: {
+        text: "Scheme Distribution",
+        style: {
+            fontSize: '16px',
+            fontWeight: 'bold',
+            fontFamily: "Poppins",
+            color: '#263238'
+        },
+    }
+
+}
+
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+chart1.render();
+
+</script>
+
+      
 <script>
   const profile = document.querySelector('#profile');
   const popup = document.querySelector('#popup');
