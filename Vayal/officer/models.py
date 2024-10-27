@@ -29,7 +29,7 @@ cast=[('All','All'),
     ('SC/ST','SC/ST')]
 
 land=[('Own','Own'),
-        ('Lease','Lease')]
+        ('Lease','Lease')]  
 
 class Scheme(models.Model):
     name=models.CharField(max_length=250)
