@@ -1,27 +1,116 @@
 {% extends "base.html" %}
 {% load tailwind_filters %}
-{% comment %} {% load tailwind_filters %} {% endcomment %}
 
 {% block content %}
 <div class="relative  bg-gradient-to-br from-green-200 to-green-600 pt-10 pb-10">
-    
-<div class="max-w-xl mx-auto   p-6 bg-white rounded-lg shadow-md ">
-    {% comment %} px-6 py-8 pr-36 -mt-8 {% endcomment %}
-    <div class"mt-10">
-    <h2 class="text-md font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Registration</h2>
-        <div class="bg-white rounded p-5">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form|crispy}}
-                <div class="flex gap-3 mt-5">
-                   {% comment %} <input type='submit' value='save' class="text-white bg-green-300 hover:bg-green-700 border rounded border-transparent px-4 py-1"> {% endcomment %}
-                    <button type='submit' value='save' class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
-                  
-                    <button type='reset' value='clear' class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
-                </div>
-            </form>
+    <div class="max-w-xl mx-auto   p-6 bg-white rounded-lg shadow-md ">
+        <div class"mt-10">
+        <h2 class="text-md font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">Registration</h2>
+            <div class="bg-white rounded p-5">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="flex gap-3 mt-5">
+                        <button type='submit' value='save' class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+                        <button type='reset' value='clear' class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
+    </div> 
+
+                
+                        {% comment %} <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
+                            <h2 class="text-md font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-6">Vayal User Registration</h2>
+                            
+                            <form method="post" enctype="multipart/form-data" class="space-y-4">
+                                {% csrf_token %}
+                                
+                                <div>
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="dob" class="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
+                                    <input type="date" name="dob" id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+                                    <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
+                                        {% for key, value in form.gender.field.choices %}
+                                            <option value="{{ key }}">{{ value }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                    
+                                <div>
+                                    <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900">Phone Number</label>
+                                    <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="aadhar_number" class="block mb-2 text-sm font-medium text-gray-900">Aadhar Number</label>
+                                    <input type="text" name="aadhar_number" id="aadhar_number" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="cast" class="block mb-2 text-sm font-medium text-gray-900">Cast</label>
+                                    <select name="cast" id="cast" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
+                                        {% for key, value in form.cast.field.choices %}
+                                            <option value="{{ key }}">{{ value }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                    
+                                <div>
+                                    <label for="house_name" class="block mb-2 text-sm font-medium text-gray-900">House Name</label>
+                                    <input type="text" name="house_name" id="house_name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="place" class="block mb-2 text-sm font-medium text-gray-900">Place</label>
+                                    <input type="text" name="place" id="place" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="village" class="block mb-2 text-sm font-medium text-gray-900">Village</label>
+                                    <input type="text" name="village" id="village" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="pincode" class="block mb-2 text-sm font-medium text-gray-900">Pincode</label>
+                                    <input type="text" name="pincode" id="pincode" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+                                </div>
+                    
+                                <div>
+                                    <label for="land_ownership" class="block mb-2 text-sm font-medium text-gray-900">Land Ownership</label>
+                                    <select name="land_ownership" id="land_ownership" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5">
+                                        {% for key, value in form.land_ownership.field.choices %}
+                                            <option value="{{ key }}">{{ value }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                    
+                                <div>
+                                    <label for="photo" class="block mb-2 text-sm font-medium text-gray-900">Photo</label>
+                                    <input type="file" name="photo" id="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                                </div>
+                    
+                                <div class="flex gap-3 mt-5">
+                                    <button type="submit" class="rounded-md bg-green-600 hover:bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm">Submit</button>
+                                    <button type="reset" class="text-green-600 border rounded border-green-600 px-4 py-1">Reset</button>
+                                </div>
+                    
+                            </form>
+                        </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+
+
+
 {% endblock content %}
 

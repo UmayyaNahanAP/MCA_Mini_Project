@@ -23,7 +23,11 @@ class VayalUserRegistrationForm(ModelForm):
         model=Vayal_User
         fields=['name','dob','gender','phone_number','aadhar_number','cast',
                'house_name','place','village','pincode','land_ownership','photo']
-        widgets = {'dob': DateInput()}
+        widgets = {'dob': DateInput(),}
+                #    'gender': forms.Select(choices=Vayal_User.gender),
+                #     'cast': forms.Select(choices=Vayal_User.cast),
+                #     'land_ownership': forms.Select(choices=Vayal_User.land_ownership),
+                #     'vegetable_permission': forms.Select(choices=Vayal_User.vegetable_permission),}
 
 
 class CreateSchemeForm(ModelForm):
