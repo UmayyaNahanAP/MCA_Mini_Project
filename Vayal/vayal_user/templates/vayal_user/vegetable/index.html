@@ -125,9 +125,11 @@ Complaints
                         <th scope="col" class="px-1 py-2">{{vegetable.posted_date | date:"m/d/Y" }}</th>
                     </tr>
                 </table>
+                {% if vayal_user.id != vegetable.farm_details.vayal_user.id %}
                 <div class="flex justify-end ">
                     <a href ="{% url 'vayal_user:vegetables_purchase' vegetable.id %}" class="text-lg text-gray-400 ">Buy</a>
                 </div>
+                {% endif %}
                 
         </div>
         </div>
