@@ -14,7 +14,7 @@ def update_status(request,application_id,vayal_user_id):
     officer =Agricultural_officer.objects.get(account=request.user)
     scheme_application = SchemeApplication.objects.get(id=application_id, vayal_user_id=vayal_user_id)
     scheme_application.status = request.POST['status']
-    scheme_application.officer = request.POST[officer]
+    scheme_application.officer =officer
     scheme_application.save()
     context = {
         'officer': officer,

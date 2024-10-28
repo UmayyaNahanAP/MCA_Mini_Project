@@ -8,11 +8,9 @@ def index(request):
     schemes=Scheme.objects.all().order_by('-id')
     return render(request,'officer/schemes/index.html',{'schemes':schemes,})
 
-
 def details(request,id):
     scheme=Scheme.objects.get(id=id)
     return render(request,'officer/schemes/details.html',{'scheme':scheme})
-
 
 def create(request):
     officer =Agricultural_officer.objects.get(account=request.user)
@@ -35,7 +33,6 @@ def update(request,id):
             form.save()
             return redirect('officer:schemes')
     return render(request,'officer/schemes/update.html',{'form':form})
-
 
 def delete(request,id):
     scheme=Scheme.objects.get(id=id)
