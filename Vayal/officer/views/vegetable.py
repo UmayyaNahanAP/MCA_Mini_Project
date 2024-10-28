@@ -24,7 +24,7 @@ def update_status(request,application_id,vayal_user_id):
     vegetable_permission = VegetablePermission.objects.get(id=application_id, vayal_user_id=vayal_user_id)
     vayal_user = vegetable_permission.vayal_user
     vayal_user.vegetable_permission = request.POST['status']
-    vegetable_permission.officer=request.POST[officer]
+    vegetable_permission.officer=officer
     vayal_user.save()
     status = request.GET.get('status')
     vegetable_permissions= VegetablePermission.objects.all().order_by('-id')
