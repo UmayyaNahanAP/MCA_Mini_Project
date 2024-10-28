@@ -90,7 +90,8 @@ Notifications
         <div class=" mx-auto   p-6 bg-white rounded-lg shadow-md ">
             <div class"mt-10">
                 <div class="bg-white rounded p-5">
-                    <form action="/officer/notification/create/" method="post">
+                    {% comment %} <form action="/officer/notification/create/" method="post"> {% endcomment %}
+                        <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="flex gap-3 mt-5">

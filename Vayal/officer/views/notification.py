@@ -36,7 +36,6 @@ def update(request, id):
     form = CreateNotificationForm(instance=notification)
     return render(request, 'officer/notification/update.html', {'form': form})
 
-
 def delete(request, id):
     notification = Notification.objects.get(id=id)
     notification.delete()
