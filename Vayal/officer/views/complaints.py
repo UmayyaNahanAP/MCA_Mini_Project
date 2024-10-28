@@ -38,7 +38,7 @@ def update_status(request, id):
     officer =Agricultural_officer.objects.get(account=request.user)
     complaint = Complaint.objects.get(id=id)
     complaint.status = request.POST['status']
-    complaint.officer = request.POST[officer]
+    complaint.officer =officer
     complaint.save()
     return redirect('officer:complaints')
 
