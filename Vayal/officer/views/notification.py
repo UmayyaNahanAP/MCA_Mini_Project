@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from officer.forms import CreateNotificationForm
-from officer.models import Notification
+from officer.models import Agricultural_officer,Notification
 
 
 def index(request):
@@ -14,10 +14,13 @@ def details(request,id):
 
 
 def create(request):
+    officer =Agricultural_officer.objects.get(account=request.user)
     if request.POST:
-        form = CreateNotificationForm(request.POST, request.FILES)
+        form = CreateNotificationForm(request.POST)
         if form.is_valid():
-            form.save()
+            create_notification= form.save(commit=False)
+            create_notification.officer = officer
+            create_notification .save()
             return redirect('officer:notifications')
     form = CreateNotificationForm()
     return render(request, 'officer/notification/create.html/', {'form': form})

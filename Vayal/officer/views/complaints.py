@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from officer.models import Complaint
-
+from officer.models import Agricultural_officer,Complaint
 
 
 def index(request):
@@ -36,11 +35,12 @@ def mark_resolved(request, id):
 
 
 def update_status(request, id):
+    officer =Agricultural_officer.objects.get(account=request.user)
     complaint = Complaint.objects.get(id=id)
     complaint.status = request.POST['status']
+    complaint.officer = request.POST[officer]
     complaint.save()
     return redirect('officer:complaints')
-
 
 def delete(request, id):
     complaint = Complaint.objects.get(id=id)

@@ -4,13 +4,9 @@ from officer.forms import CreateSchemeForm
 
 
 def index(request):
-    officer =Agricultural_officer.objects.get(account=request.user)
+    # officer =Agricultural_officer.objects.get(account=request.user)
     schemes=Scheme.objects.all().order_by('-id')
-    context = {
-        'officer': officer,
-        'schemes':schemes,
-    }
-    return render(request,'officer/schemes/index.html',context)
+    return render(request,'officer/schemes/index.html',{'schemes':schemes,})
 
 
 def details(request,id):
@@ -19,14 +15,16 @@ def details(request,id):
 
 
 def create(request):
+    officer =Agricultural_officer.objects.get(account=request.user)
     if request.POST:
         form=CreateSchemeForm(request.POST)
         if form.is_valid():
-            form.save()
+            create_scheme= form.save(commit=False)
+            create_scheme.officer = officer
+            create_scheme .save()
             return redirect('officer:schemes')
     form=CreateSchemeForm()
     return render(request,'officer/schemes/create.html',{'form':form})
-
 
 def update(request,id):
     scheme=Scheme.objects.get(id=id)

@@ -11,6 +11,11 @@ cast=[('General','General'),
     ('OBC','OBC'),
     ('SC/ST','SC/ST')]
 
+scheme_cast=[('All','All'),
+    ('General','General'),
+    ('OBC','OBC'),
+    ('SC/ST','SC/ST')]
+
 land=[('Own','Own'),
         ('Lease','Lease')]
 
@@ -71,7 +76,7 @@ class Scheme(models.Model):
     type=models.CharField(max_length=50,choices=schem_type)
     description=models.CharField(max_length=250)
     criteria=models.CharField(max_length=250)
-    cast_eligibility = models.CharField(max_length=50,choices=cast,default='All')
+    cast_eligibility = models.CharField(max_length=50,choices=scheme_cast,default='All')
     land_ownership=models.CharField(max_length=20, choices=land,default='All')
     posted_date=models.DateTimeField(auto_now_add=True)
     start_date=models.DateField()
@@ -84,7 +89,7 @@ class Scheme(models.Model):
 class SchemeApplication(models.Model):
     scheme=models.ForeignKey(Scheme, on_delete=models.CASCADE)
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
-    officer=models.ForeignKey(Agricultural_officer, on_delete=models.CASCADE)
+    officer=models.ForeignKey(Agricultural_officer, on_delete=models.CASCADE,null=True, blank=True)
     benefiting=models.CharField(max_length=50,choices= benefiting)
     house_number= models.CharField(max_length=250)
     ward_number= models.CharField(max_length=250)
@@ -105,7 +110,7 @@ class SchemeApplication(models.Model):
 
 class VegetablePermission(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
-    officer=models.ForeignKey(Agricultural_officer, on_delete=models.CASCADE)
+    officer=models.ForeignKey(Agricultural_officer, on_delete=models.CASCADE,null=True, blank=True)
     farm_name = models.CharField(max_length=250)
     farm_place = models.CharField(max_length=250)
     total_land_area = models.CharField(max_length=255)
@@ -142,6 +147,7 @@ class VegetablePurchase(models.Model):
 
 class Complaint(models.Model):
     vayal_user = models.ForeignKey(Vayal_User, on_delete=models.CASCADE)
+    officer=models.ForeignKey(Agricultural_officer, on_delete=models.CASCADE,null=True, blank=True)
     title = models.CharField(max_length=150)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

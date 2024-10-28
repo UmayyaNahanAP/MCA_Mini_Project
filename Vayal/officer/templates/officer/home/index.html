@@ -104,13 +104,13 @@ Home
                 </div>
             </div>
         </div>
-        {% if  complaints %}
+        
         <div class="w-2/3 bg-white rounded  pb-2 px-6">
             <h1 class="text-lg font-bold mb-4">Analytics</h1>
             <div id="chart1" class="w-full h-96">
             </div>
         </div>
-        {% endif %}
+      
     </div>
     
     
@@ -133,7 +133,7 @@ const options1 = {
             '{{ cast_eligibility }}',
         {% endfor %}
     ],
-    colors: ['#15803D', '#4ADE80', '#BBF7D0'], 
+    colors: ['#14532D','#15803D', '#4ADE80', '#BBF7D0'], 
     title: {
         text: "Scheme Distribution",
         style: {
